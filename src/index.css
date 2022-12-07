@@ -394,3 +394,116 @@ p, h1, h2, h3, h4 {
 .footer__site:first-of-type{
   margin-right: 20px;
 }
+
+/*Register and Login*/
+.pageSignForm{
+  padding: 70px 442px;
+}
+.signForm{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+.signForm_logo{
+  margin-bottom: 40px;
+}
+
+.signForm_header{
+  margin-bottom: 40px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.label{
+  color: #A0A0A0;
+  margin-bottom: 5px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.input{
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.input:hover{
+  border-bottom: 1px solid #3456F3;
+}
+
+.input:focus-visible{
+  outline: none;
+}
+
+.input_signForm{  
+  border-bottom: 1px solid #E8E8E8;
+  padding-bottom: 10px;
+  margin-bottom: 24px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.input-error{
+  position: absolute;
+  width: 100%;
+  top: 18px;
+  color: #EE3465;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px
+}
+
+.input-error_name{
+  top: 51px;
+}
+
+.input-error_email{
+  top: 120px;
+}
+
+.input-error_password{
+  top: 189px;
+}
+
+.button-submit{
+  border: none;
+  color: white;
+  padding-top: 13px;
+  padding-bottom: 15px;
+  margin-top: 152px;
+  margin-bottom: 16px;
+  border-radius: 3px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.signForm__text{
+  text-align: center;
+  color: #A0A0A0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.signForm__link{
+  margin-left: 6px;
+  color: #3456F3;
+}

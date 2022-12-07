@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, useHistory } from 'react-router-dom';
-import ProtectedRoute from '../ProtectedRoute';
 
 //Импорт компонентов
+import ProtectedRoute from '../ProtectedRoute';
 import Main from '../Main/Main';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
@@ -45,23 +45,6 @@ function App() {
       </Routes>
     </div>
   ); 
- /*
-  </Route>
-
-  <Route path='/signup'>
-  </Route>
-
-  <Route path='/' element={<Main/>} />
-
-  <Route loggedIn={loggedIn} element={
-    <ProtectedRoute>
-      <Route path='/profile' element={<Profile/>}/>
-      <Route path='/movies' element={<Movies/>}/>
-      <Route path='/saved-movies' element={<SavedMovies/>}/>
-    </ProtectedRoute>
-  } />
-
-  <Route path="*" element={<NotFoundPage />} /> /> */
 }
 
 export default App;
