@@ -14,12 +14,11 @@ function Main(props) {
     return (
         <>
             <main className='main'>
-                <Promo></Promo>
+                <Promo/>
                 <NavTab/>
                 <AboutProject/>
                 <Techs/>
                 <AboutMe/>
-                <Portfolio/>
             </main>
             <Footer/>
         </>

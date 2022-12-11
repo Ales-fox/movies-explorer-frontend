@@ -15,10 +15,21 @@ import './App.css';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true); // Потом изменить на false
+  const [userInfo, setUserInfo] = useState({name: 'Александра', email: 'Tuturu@mail.ru'});
   
   useEffect(() => {
    //Должна быть проверка на состояние loggedIn
   }, [loggedIn]);
+
+  //Выход из системы
+  const handleLogOutClick = () => {
+    /*authApi.logOut()
+    .then((data) => {
+      history.push('/signin'); //Переадресация
+      console.log('Вышли');
+    })
+    .catch((err) => console.dir(err)); */ //Апи пока нет
+  }
 
   return (
     <div className="App">
@@ -33,7 +44,7 @@ function App() {
           </Route>          
 
           <Route element={<ProtectedRoute loggedIn={loggedIn}/>}>
-            <Route path='/profile' element={<Profile/>}/>
+            <Route path='/profile' element={<Profile userInfo={userInfo} logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} />}/>
 
             <Route path='/movies' element={<Movies/>}/>
 
