@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import icon from '../../images/iconAccount.png'
+import './Header.css'
 
 function Header(props) {
     return (

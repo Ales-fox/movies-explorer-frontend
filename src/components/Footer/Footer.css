@@ -1,0 +1,57 @@
+
+.footer{
+  max-width: 1140px;
+  width: 90%;
+  margin: 0px auto ;
+  padding-top: 79px;
+  padding-bottom: 20px;
+}
+
+.footer__title{
+  margin-bottom: 20px;  
+  color: #A0A0A0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.footer__text{
+  display: flex;
+  justify-content: space-between;
+  border-top: #E8E8E8 1px solid;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+.footer__year{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+}
+.footer__sites{
+  display: flex;
+  justify-content: end;
+}
+
+.footer__site{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: right;
+}
+
+.footer__site:first-of-type{
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutMe {
+    margin: 90px 50px;
+  }
+}

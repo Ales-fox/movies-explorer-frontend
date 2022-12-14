@@ -1,0 +1,33 @@
+.moviesCards{
+    width: 100%;
+    margin: 70px auto 10px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: 37px 24px;
+    
+    border-radius: 6px;
+}
+
+.button-more{
+    width: 29%;
+    max-width: 320px;
+    margin: 50px auto 80px auto;
+    padding-top: 10px;
+    padding-bottom: 9px;
+    background: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    border: 1px solid rgba(232, 232, 232, 0.2);    
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.button-more:hover{
+    opacity: 0.6;
+    cursor: pointer;
+}

@@ -1,0 +1,41 @@
+.header{
+  margin: auto;
+  padding: 18px 70px;
+  max-width: 1280px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__link{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.header__link:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.header__link_bold{
+  font-weight: 500;
+  margin-right: 16px;
+}
+
+.header__link-button{
+  box-sizing: border-box;
+  border: 2px solid rgba(170, 170, 170, 0.2);
+  border-radius: 50px;
+  padding: 6px 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.icon{
+  margin-right: 7px;
+}

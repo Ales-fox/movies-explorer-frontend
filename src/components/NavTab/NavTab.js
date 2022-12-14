@@ -1,3 +1,5 @@
+import './NavTab.css';
+
 function NavTab(props) {
     return (
         <div className="nav">

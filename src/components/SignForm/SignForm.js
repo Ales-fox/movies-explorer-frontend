@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import logo from "../../images/logo.svg";
+import './SignForm.css';
 
 function SignForm(props) {
     const { header, onSubmit, onChange, value, buttonTitle, textUnderSubmit, link, linkText, children } = props;

@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import './NotFoundPage.css'
 
 function NotFoundPage(props) {
     const location = useLocation();

@@ -1,0 +1,12 @@
+.grayWrapper{
+  background: #FAFAFA;
+  width: 100%;
+}
+
+.movies{
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 70px;
+  box-sizing: border-box;
+  margin: auto;
+}

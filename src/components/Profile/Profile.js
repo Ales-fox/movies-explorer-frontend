@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from "../Header/Header";
+import './Profile.css';
 
 function Profile(props) {
     const { userInfo, logOutLink, linkName, onClick } = props;
@@ -21,7 +22,7 @@ function Profile(props) {
     };
     return (
         <>
-            <Header></Header>
+            <Header />
             <main className='profile'>
                 <h1 className="profile_header">{`Привет, ${userInfo.name}!`}</h1>
                 <form className="profileForm"  onSubmit={handleSubmit}>
