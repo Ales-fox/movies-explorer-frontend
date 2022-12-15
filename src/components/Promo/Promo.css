@@ -45,3 +45,21 @@
         width: 93%;
     }
 }
+
+@media screen and (max-width: 768px) {
+  .promo {
+      max-width: 292px;
+  }
+
+  .promo__link {
+    margin-right: 14px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .promo__link-button{
+    padding: 5px 12px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+}

@@ -45,7 +45,6 @@
 
 .portfolio__link{
   border-bottom: 1px #E8E8E8 solid;
-  height: 100%-1px;
   display: flex;
 }
 
@@ -58,4 +57,16 @@
         font-size: 28px;
         line-height: 50px;
     }
+}
+
+@media screen and (max-width: 320px) {
+  .portfolio__title{
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .portfolio__cell {
+    font-size: 18px;
+    line-height: 28px;
+  }
 }

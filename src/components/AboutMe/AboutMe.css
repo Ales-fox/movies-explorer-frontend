@@ -88,3 +88,41 @@
     margin-bottom: 91px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .aboutMe {
+    margin: 70px 14px;
+  }
+
+  .aboutMe__photo{
+    position: static;
+    width: 100%;
+    max-width: 292px;
+    max-height: 352px;
+    margin: 60px auto 40px;
+  }
+
+  .aboutMe__name {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .aboutMe__job{
+    width: 100%;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .aboutMe__about{
+    width: 100%;
+    margin-bottom: 40px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .aboutMe__git{
+    margin-bottom: 70px;
+  }
+}

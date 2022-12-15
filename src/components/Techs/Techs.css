@@ -71,3 +71,37 @@
         width: 84px;
     }
 }
+
+@media screen and (max-width: 320px) {
+  .techs {
+      padding: 70px 14px;
+  }
+
+  .techs__title{
+    margin-top: 60px;
+    margin-bottom: 24px;
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .techs__paragraph{
+    width: 100%;
+    margin-bottom: 50px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .stacks{
+    margin: 0px 57px;
+    flex-wrap: wrap;
+  }
+  .stacks__cell:nth-child(even){
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+
+  .stacks__cell:last-child{
+    margin-left: 0px;
+    margin-right: auto;
+  }
+}
