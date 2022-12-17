@@ -1,17 +1,15 @@
 .moviesCards{
     width: 100%;
-    margin: 70px auto 10px auto;
+    margin: 80px auto 10px auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
     grid-auto-rows: 1fr;
-    gap: 37px 24px;
-    
+    gap: 37px 24px;    
     border-radius: 6px;
 }
 
 .button-more{
-    width: 29%;
-    max-width: 320px;
+    width: 320px;
     margin: 50px auto 80px auto;
     padding-top: 10px;
     padding-bottom: 9px;
@@ -30,4 +28,17 @@
 .button-more:hover{
     opacity: 0.6;
     cursor: pointer;
+}
+
+@media screen and (max-width: 850px) {
+  .moviesCards{
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .moviesCards{
+    margin:80px auto 0px;
+  }
 }

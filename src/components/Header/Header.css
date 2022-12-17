@@ -1,11 +1,17 @@
 .header{
   margin: auto;
+  position: relative;
   padding: 18px 70px;
+  width: 100%;
   max-width: 1280px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header__logo{
+  display: flex;
 }
 
 .header__link{
@@ -25,7 +31,7 @@
   margin-right: 16px;
 }
 
-.header__link-button{
+.link-button{
   box-sizing: border-box;
   border: 2px solid rgba(170, 170, 170, 0.2);
   border-radius: 50px;
@@ -38,4 +44,31 @@
 
 .icon{
   margin-right: 7px;
+}
+
+.menu__hamburger{
+  display: none;
+  background: url('../../images/menu-hamburger.png');
+  border: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .header{
+    padding: 15px 30px;
+  }
+
+  .header__links {
+    display: none;
+  }
+
+  .header__link-button{
+    display: none;
+  }
+
+  .menu__hamburger{
+    display: block;
+  }
 }

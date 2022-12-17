@@ -24,3 +24,8 @@ p, h1, h2, h3, h4 {
 .button {
   background: #3456F3;
 }
+
+.list{
+  list-style-type: none;
+  padding: 0;
+}

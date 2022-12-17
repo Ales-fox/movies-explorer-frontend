@@ -67,6 +67,10 @@
     opacity: 1;
 }
 
+.moviesCard__img{
+    width: 100%;
+}
+
 .moviesCard__text{
     width: fit-content;
     font-family: 'Inter';
@@ -74,4 +78,18 @@
     font-weight: 400;
     font-size: 11px;
     line-height: 13px;
+    color: #A0A0A0;
+}
+
+@media screen and (max-width: 768px) {
+  .moviesCard{
+    max-width: 339px;
+  }
+
+  .moviesCard__main{
+    margin-bottom: 15px;
+}
+  .moviesCard__about{
+    padding: 14px;
+  }
 }

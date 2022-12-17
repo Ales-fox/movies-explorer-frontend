@@ -9,6 +9,7 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Movies from '../Movies/Movies';
+import HeaderMenuHamburger from '../HeaderMenuHamburger/HeaderMenuHamburger';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 import './App.css';
@@ -17,6 +18,16 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(true); // Потом изменить на false
   const [userInfo, setUserInfo] = useState({name: 'Александра', email: 'Tuturu@mail.ru'});
   const [moviesCards, setMoviesCards] = useState([]);
+  const [isPopupOpen, setPopupOpen] = useState(false);
+  
+  const handleHamburgerPopupClick = () => {
+    setPopupOpen(true);
+  };
+
+  const closePopups = () => {
+    setPopupOpen(false);
+    console.log(isPopupOpen);
+  }
   
   useEffect(() => {
    //Должна быть проверка на состояние loggedIn
@@ -64,15 +75,16 @@ function App() {
           </Route>          
 
           <Route element={<ProtectedRoute loggedIn={loggedIn}/>}>
-            <Route path='/profile' element={<Profile userInfo={userInfo} logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} />}/>
+            <Route path='/profile' element={<Profile onMenuHamburgerClick={handleHamburgerPopupClick} userInfo={userInfo} logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} />}/>
 
-            <Route path='/movies' element={<Movies onClick={handleSearchClick} moviesCards={moviesCards} />}>
+            <Route path='/movies' element={
+                <Movies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} moviesCards={moviesCards} />}>
               <Route path='/movies' element={
                 <button className='button-like button-like_active' type="button" onClick={handleCardLike}/>                 
                 }/>
             </Route>
 
-            <Route path='/saved-movies' element={<SavedMovies onClick={handleSearchClick} />}>
+            <Route path='/saved-movies' element={<SavedMovies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} />}>
               <Route path='/saved-movies' element={
                 <button className="button-delete" type="button" onClick={handleCardDelete}/>
                 }/>
@@ -82,6 +94,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>             
       </Routes>
+      <HeaderMenuHamburger isOpen={isPopupOpen} onClose={closePopups}/>
     </div>
   ); 
 }

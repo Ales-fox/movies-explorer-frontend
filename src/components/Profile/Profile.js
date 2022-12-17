@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 import './Profile.css';
 
 function Profile(props) {
-    const { userInfo, logOutLink, linkName, onClick } = props;
+    const { onMenuHamburgerClick, userInfo, logOutLink, linkName, onClick } = props;
     const [value, setValue] = useState({ email: userInfo.email, name: userInfo.name }); //Создаем переменную для инпутов
 
     // Управление инпутами
@@ -22,7 +22,7 @@ function Profile(props) {
     };
     return (
         <>
-            <Header />
+            <Header onMenuHamburgerClick={onMenuHamburgerClick}/>
             <main className='profile'>
                 <h1 className="profile_header">{`Привет, ${userInfo.name}!`}</h1>
                 <form className="profileForm"  onSubmit={handleSubmit}>

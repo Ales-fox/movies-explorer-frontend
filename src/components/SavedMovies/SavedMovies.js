@@ -5,27 +5,17 @@ import Footer from "../Footer/Footer";
 import { savedMoviesCard } from '../../constants.js';
 
 function SavedMovies(props) {
-    const { onClick, onCardLike, moviesCards } = props;
-    
-        
+    const { onMenuHamburgerClick, onSearchClick } = props;
+            
     return (
-        /*<div className="moviesCards">{
-            moviesCards.map((card) => (<MoviesCard key={card._id}
-                card={card}
-                onCardLike={onCardLike}/>))}
-        </div>
-        <div className="moviesCards">
-                    <MoviesCard />
-                </div>
-        */
         <div className='grayWrapper'>
-            <Header/>
+            <Header onMenuHamburgerClick={onMenuHamburgerClick}/>
             <main className='movies'>
-                <SearchForm onClick={onClick}/>
+                <SearchForm onClick={onSearchClick}/>
                 <div className="moviesCards">{
                     savedMoviesCard.map((card) => (<MoviesCard key={card._id}
                         card={card}
-                        onCardDelete={props.onCardDelete}/>
+                    />
                     ))}
                 </div>
             </main>

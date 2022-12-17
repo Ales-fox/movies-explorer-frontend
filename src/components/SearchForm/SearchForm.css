@@ -5,6 +5,8 @@
   justify-content: space-between;
   margin-top: 70px;
   margin-bottom: 26px;
+  padding-right: 10px;
+  box-sizing: border-box;
 }
   
 .searchForm__input{
@@ -24,11 +26,12 @@
   outline-color: #3456F3;
 }
   
-.button-search{  
-  flex-grow: 0.35;
-  margin: auto 10px;
+.button-search{
+  margin: auto;
+  width: 100px;
   height: 52px;
-  padding: 17px 20px;
+  box-sizing: border-box;
+  padding: 17px 25px;
   border: none;
   border-radius: 5px;
   color: #FFFFFF;
@@ -42,4 +45,7 @@
 .button-search:hover{
   opacity: 0.6;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
 }
