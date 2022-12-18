@@ -42,3 +42,16 @@
     margin:80px auto 0px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .moviesCards{
+    margin:50px auto 0px;
+    grid-template-columns:  minmax(200px, 1fr);
+    row-gap: 14px;
+  }
+
+  .button-more{
+    width: 240px;
+    margin-top: 76px;
+  }
+}

@@ -70,3 +70,13 @@ input:checked + .slider:before {
     padding-bottom: 51px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .checkbox__title{
+    font-size: 11px;
+  }
+
+  .checkbox__container{
+    padding-bottom: 63px;
+  }
+}

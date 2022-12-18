@@ -88,8 +88,24 @@
 
   .moviesCard__main{
     margin-bottom: 15px;
-}
+ }
   .moviesCard__about{
     padding: 14px;
   }
+}
+
+@media screen and (max-width: 768px) {
+    .moviesCard__header{
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .moviesCard__main{
+        margin-bottom: 14px;
+    }
+
+    .moviesCard__text{
+        font-size: 10px;
+        line-height: 12px;
+    }
 }

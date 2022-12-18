@@ -5,14 +5,14 @@ import Footer from "../Footer/Footer";
 import './Movies.css';
 
 function Movies(props) {    
-    const { onMenuHamburgerClick, onSearchClick, moviesCards, onCardLike } = props;
+    const { onMenuHamburgerClick, onSearchClick, cardsList, onCardLike } = props;
 
     return (
         <div className="grayWrapper">  
             <Header onMenuHamburgerClick={onMenuHamburgerClick}/>
             <main className='movies'>
                 <SearchForm onClick={onSearchClick}/>
-                <MoviesCardList moviesCards={moviesCards} onCardLike={onCardLike}/>                
+                <MoviesCardList cardsList={cardsList} onCardLike={onCardLike} />                
             </main>
             <Footer />
         </div>        

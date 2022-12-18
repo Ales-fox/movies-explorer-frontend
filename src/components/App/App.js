@@ -11,13 +11,16 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Movies from '../Movies/Movies';
 import HeaderMenuHamburger from '../HeaderMenuHamburger/HeaderMenuHamburger';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import { constMoviesCards } from '../../constants';
+import { savedMoviesCard } from '../../constants.js';
 
 import './App.css';
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true); // Потом изменить на false
   const [userInfo, setUserInfo] = useState({name: 'Александра', email: 'Tuturu@mail.ru'});
-  const [moviesCards, setMoviesCards] = useState([]);
+  const [moviesCards, setMoviesCards] = useState(constMoviesCards);
   const [isPopupOpen, setPopupOpen] = useState(false);
   
   const handleHamburgerPopupClick = () => {
@@ -78,13 +81,13 @@ function App() {
             <Route path='/profile' element={<Profile onMenuHamburgerClick={handleHamburgerPopupClick} userInfo={userInfo} logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} />}/>
 
             <Route path='/movies' element={
-                <Movies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} moviesCards={moviesCards} />}>
+                <Movies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} cardsList={moviesCards} />}>
               <Route path='/movies' element={
                 <button className='button-like button-like_active' type="button" onClick={handleCardLike}/>                 
                 }/>
             </Route>
 
-            <Route path='/saved-movies' element={<SavedMovies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} />}>
+            <Route path='/saved-movies' element={<SavedMovies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} cardsList={savedMoviesCard}/>}>
               <Route path='/saved-movies' element={
                 <button className="button-delete" type="button" onClick={handleCardDelete}/>
                 }/>

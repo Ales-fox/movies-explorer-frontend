@@ -2,10 +2,9 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Footer from "../Footer/Footer";
-import { savedMoviesCard } from '../../constants.js';
 
 function SavedMovies(props) {
-    const { onMenuHamburgerClick, onSearchClick } = props;
+    const { onMenuHamburgerClick, onSearchClick, cardsList } = props;
             
     return (
         <div className='grayWrapper'>
@@ -13,7 +12,7 @@ function SavedMovies(props) {
             <main className='movies'>
                 <SearchForm onClick={onSearchClick}/>
                 <div className="moviesCards">{
-                    savedMoviesCard.map((card) => (<MoviesCard key={card._id}
+                    cardsList.map((card) => (<MoviesCard key={card._id}
                         card={card}
                     />
                     ))}

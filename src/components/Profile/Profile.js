@@ -24,7 +24,7 @@ function Profile(props) {
         <>
             <Header onMenuHamburgerClick={onMenuHamburgerClick}/>
             <main className='profile'>
-                <h1 className="profile_header">{`Привет, ${userInfo.name}!`}</h1>
+                <h1 className="profile__header">{`Привет, ${userInfo.name}!`}</h1>
                 <form className="profileForm"  onSubmit={handleSubmit}>
                     <div className='profileForm__cell'>
                         <label htmlFor="name" className='label__profileForm'>Имя</label>

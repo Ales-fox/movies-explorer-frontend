@@ -75,5 +75,34 @@
   margin: 0px auto 90px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
+  .menu{
+    width: 100%;
+    max-width:100%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .menu{
+    width: 100%;
+  }
+  .layer_darkened{  
+    display: none;
+  }
+
+  .button-close{
+    margin: 13.44px 13.44px 99.44px auto;
+  }
+
+  .menu__link{
+    margin-bottom: 24px;
+  }
+
+  .menu__link_active{
+    text-underline-offset: 7px;
+  }
+
+  .menu__link-button{
+    margin-bottom: 46px;
+  }
 }

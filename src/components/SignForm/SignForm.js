@@ -10,8 +10,8 @@ function SignForm(props) {
     return (
         <>  
         <main className='pageSignForm'>
-            <img className='signForm_logo' src={logo} alt='logo'/>
-            <h1 className="signForm_header">{header}</h1>
+            <img className='signForm__logo' src={logo} alt='logo'/>
+            <h1 className="signForm__header">{header}</h1>
             <form className="signForm" onSubmit={onSubmit}>
                 <>{children}</>
                 <label htmlFor="email" className='label'>E-mail</label>
