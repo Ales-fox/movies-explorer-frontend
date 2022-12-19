@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, Routes, useHistory } from 'react-router-dom';
 
 //Импорт компонентов
-import ProtectedRoute from '../ProtectedRoute';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Main from '../Main/Main';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
@@ -38,10 +38,10 @@ function App() {
 
   //Выход из системы
   const handleLogOutClick = () => {
+    console.log('Вышли');
     /*authApi.logOut()
     .then((data) => {
-      history.push('/signin'); //Переадресация
-      console.log('Вышли');
+      history.push('/signin'); //Переадресация      
     })
     .catch((err) => console.dir(err)); */ //Апи пока нет
   }

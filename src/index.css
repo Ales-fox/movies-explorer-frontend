@@ -2,6 +2,7 @@
 
 @import url(./vendor/fonts/fonts.css);
 
+/*Общие стили*/
 html {
   scroll-behavior: smooth;
 }
