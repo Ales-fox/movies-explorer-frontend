@@ -160,3 +160,12 @@ export const savedMoviesCard = [
         like: true,
     },
 ];
+
+export const reEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+
+export const inputErrorMessage = {
+    fieldEmpty: 'Поле не может быть пустым',
+    emailIncorrect: 'Email некорректен',
+    passwordIncorrect: 'Пароль должен быть длиннее 8 символов',
+    nameIncorrrect: 'Имя должно быть длиннее 3 символов'
+}

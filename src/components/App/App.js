@@ -22,7 +22,7 @@ function App() {
   const [userInfo, setUserInfo] = useState({name: 'Александра', email: 'Tuturu@mail.ru'});
   const [moviesCards, setMoviesCards] = useState(constMoviesCards);
   const [isPopupOpen, setPopupOpen] = useState(false);
-  
+
   const handleHamburgerPopupClick = () => {
     setPopupOpen(true);
   };
