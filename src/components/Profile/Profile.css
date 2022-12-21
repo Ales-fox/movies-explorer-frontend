@@ -6,7 +6,7 @@
 
 .profile__header{
   margin-bottom: 107px;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -33,7 +33,7 @@
 }
 
 .label__profileForm{
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 500;
   font-size: 11px;
@@ -42,7 +42,7 @@
 }
 
 .input_profileForm{
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 11px;
@@ -53,7 +53,7 @@
 .button__profile{
   background: none;
   border: none;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -62,7 +62,7 @@
 }
 
 .link-logOut{
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 500;
   font-size: 13px;

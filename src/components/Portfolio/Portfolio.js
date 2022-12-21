@@ -1,4 +1,4 @@
-import arrow from '../../images/portfolio__arrow.png';
+import arrow from '../../images/arrow.svg';
 import './Portfolio.css';
 
 function Portfolio(props) {
@@ -9,7 +9,7 @@ function Portfolio(props) {
                     <li className='list'>
                         <a className='portfolio__link link' href='https://github.com/Ales-fox/how-to-learn' target='_blank' rel="noreferrer">
                             <p className="portfolio__cell">Статичный сайт</p>
-                            <img className="arrow" src={arrow} alt='arrow'></img>
+                            <img className="arrow" src={arrow} alt='arrow'/>
                         </a>
                     </li>
                     <li className='list'>

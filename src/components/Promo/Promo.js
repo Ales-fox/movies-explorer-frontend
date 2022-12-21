@@ -6,7 +6,7 @@ import './Promo.css'
 function Promo(props) {
     return (
         <header className='promo'>
-            <img className='promo__logo' src={logo} alt='Лого'></img>
+            <img className='promo__logo' src={logo} alt='Лого'/>
             <div className='promo__links'>
                 <Link className="promo__link link" to='/signup' >Регистрация</Link>
                 <Link className='promo__link-button button link' to='/signin' >Войти</Link>

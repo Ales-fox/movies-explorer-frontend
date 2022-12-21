@@ -6,7 +6,7 @@
 
 .header-block{
   margin-bottom: 23px;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
@@ -33,7 +33,7 @@
 }
 
 .table__header{
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -42,7 +42,7 @@
 }
 
 .table__text{
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -55,7 +55,7 @@
   grid-gap: 14px 0;
 }
 .table__cell{
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-size: 14px;
   line-height: 17px;

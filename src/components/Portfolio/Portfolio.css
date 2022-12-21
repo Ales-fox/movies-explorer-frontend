@@ -10,7 +10,7 @@
   grid-column: 1/3;
   color: #A0A0A0;
   margin-bottom: 50px;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -33,7 +33,7 @@
 }
 
 .portfolio__cell{  
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 30px;

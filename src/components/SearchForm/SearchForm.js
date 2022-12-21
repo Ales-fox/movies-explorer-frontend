@@ -3,7 +3,6 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 
 function SearchForm(props) {
-    const { onClick } = props;
     const [value, setValue] = useState(''); //Создаем переменную для инпутов
     const [position, setPosition] = useState('true');
 
@@ -20,8 +19,8 @@ function SearchForm(props) {
     return (
         <>
             <form className="searchForm" onSubmit={handleSubmit}>
-                <input type='text' className='searchForm__input' onChange={handleChangeValue} value={value} placeholder='Фильм'></input>
-                <button type="submit" className="button-search button" onClick={onClick}>Поиск</button>
+                <input type='text' className='searchForm__input' onChange={handleChangeValue} value={value} placeholder='Фильм' required></input>
+                <button type="submit" className="button-search button" >Поиск</button>
             </form>
             <FilterCheckbox position={position} />
         </>        

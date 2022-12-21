@@ -16,7 +16,7 @@
 .aboutMe__name{
   width: 52.5%;
   margin: 66px 0 18px;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 50px;
@@ -27,7 +27,7 @@
 .aboutMe__job{
   width: 52.5%;
   margin-bottom: 26px;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -37,7 +37,7 @@
 .aboutMe__about{
   width: 52.5%;
   margin-bottom: 99px;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -47,7 +47,7 @@
 .aboutMe__git{
   width: fit-content;
   margin-bottom: 101px;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;

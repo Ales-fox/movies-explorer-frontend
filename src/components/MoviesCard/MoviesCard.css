@@ -21,7 +21,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-family: 'Inter';
+    font-family: 'Inter', "Arial", serif;
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
@@ -29,8 +29,9 @@
 }
 
 .button-like{
-    background-image: url(../../images/like.png);
-    background-repeat: no-repeat; 
+    background-image: url(../../images/like.svg);
+    background-repeat: no-repeat;
+    background: transparent;
     border: none;
     padding: 0px 0px;
     width: 14px;
@@ -43,11 +44,11 @@
 }
 
 .button-like_active{
-    background-image: url(../../images/like_active.png);
+    background-image: url(../../images/like_active.svg);
 }
 
 .button-delete{
-    background-image: url(../../images/delete.png);
+    background-image: url(../../images/delete.svg);
     background-position: right center;
     background-color: white;
     background-repeat: no-repeat; 
@@ -75,7 +76,7 @@
 
 .moviesCard__text{
     width: fit-content;
-    font-family: 'Inter';
+    font-family: 'Inter', "Arial", serif;
     font-style: normal;
     font-weight: 400;
     font-size: 11px;

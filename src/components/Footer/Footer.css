@@ -10,7 +10,7 @@
 .footer__title{
   margin-bottom: 20px;  
   color: #A0A0A0;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -27,7 +27,7 @@
 }
 
 .footer__year{
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -40,7 +40,7 @@
 }
 
 .footer__site{
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 13px;

@@ -9,9 +9,10 @@ function SignForm(props) {
     const { header, buttonTitle, textUnderSubmit, link, linkText, path } = props;
 
     const [value, setValue] = useState({ email: '', password: '', name: '' }); //Создаем переменную для инпутов
+    //Стэйты для валидации
     const [error, setError] = useState({ email: false, password: false, name: false });
     const [errorMessage, setErrorMessage] = useState({email: 'Email не может быть пустым', password: 'Пароль не может быть пустым', name: 'Имя не может быть пустым' });
-    const [formValid, setFormValid] = useState(false);// Отвечает за валидность формыю По уолчанию false
+    const [formValid, setFormValid] = useState(false);// Отвечает за валидность формы По умолчанию false
 
     // При изменении error отключает или включает кнопку сабмита
     useEffect(() => {
@@ -69,7 +70,5 @@ function SignForm(props) {
         </>
     )
 }
-/*{(error.name && errorMessage.name) && <span className={`input-error input-error_name`}>{errorMessage.name}</span>}              
-{(error.email && errorMessage.email) && <span className='input-error input-error_email'>{errorMessage.email}</span>}
-{(error.password && errorMessage.password) && <span className="input-error input-error_password">{errorMessage.password}</span>}*/
+
 export default SignForm;

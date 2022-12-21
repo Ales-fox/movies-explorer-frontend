@@ -12,13 +12,15 @@ import './Main.css';
 function Main(props) {
     return (
         <div className='grayWrapper'>
-            <main className='main'>
+            <div className='page'>
                 <Promo/>
-                <NavTab/>
-                <AboutProject/>
-                <Techs/>
-                <AboutMe/>
-            </main>
+                <main>
+                    <NavTab/>
+                    <AboutProject/>
+                    <Techs/>
+                    <AboutMe/>
+                </main>
+            </div>
             <Footer/>
         </div>
     )

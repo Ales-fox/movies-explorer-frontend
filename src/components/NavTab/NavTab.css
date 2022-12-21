@@ -14,7 +14,7 @@
   width: 61%;
   margin: auto;
   margin-bottom: 151px;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 50px;
@@ -32,7 +32,7 @@
   margin-right: 10px;
   background: #E8E8E8;
   border-radius: 10px;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;

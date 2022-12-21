@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import icon from '../../images/iconAccount.png';
+import icon from '../../images/iconAccount.svg';
 import './HeaderMenuHamburger.css'
 
 function HeaderMenuHamburger(props) {

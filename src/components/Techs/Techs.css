@@ -7,7 +7,7 @@
 .techs__title{
   margin: 90px auto 26px auto;
   text-align: center;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 50px;
@@ -19,7 +19,7 @@
   margin: auto;
   margin-bottom: 100px;
   text-align: center;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -42,7 +42,7 @@
   padding-top: 21px;
   padding-bottom: 22px;
   text-align: center;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

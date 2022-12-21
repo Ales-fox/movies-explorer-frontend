@@ -11,16 +11,16 @@ function MoviesCard(props) {
      const cardLikeButtonClassName = (`button-like button ${isLiked ? 'button-like_active' : ''}`);*/
 
     return (
-        <div className="moviesCard">
-            <img src={card.url} className='moviesCard__img'/>
-            <div className="moviesCard__about">
+        <ul className="moviesCard">
+            <li className='list'><img src={card.url} className='moviesCard__img' alt={card.filmTitle}/></li>
+            <li className='list moviesCard__about'>
                 <div className='moviesCard__main'>
                     <h3 className="moviesCard__header">{card.filmTitle}</h3>                    
                     <Outlet/>
                 </div>
                 <p className="moviesCard__text">{card.filmTime}</p>
-            </div>
-        </div>        
+            </li>
+        </ul>        
     )
 }
 

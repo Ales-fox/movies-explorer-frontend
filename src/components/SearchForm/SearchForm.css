@@ -14,7 +14,7 @@
   flex-grow: 15;
   padding: 25px 0px 25px 25px;
   border: none;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -37,7 +37,7 @@
   border: none;
   border-radius: 5px;
   color: #FFFFFF;
-  font-family: 'Inter';
+  font-family: 'Inter', "Arial", serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
