@@ -103,11 +103,11 @@
   line-height: 17px;
 }
 
-.button__signin{
+.button_signin{
   margin-top: 197px;
 }
 
-.button__signup{
+.button_signup{
   margin-top: 128px;
 }
 
@@ -145,11 +145,11 @@
     margin-bottom: -69px;
   }
 
-  .button__signin{
+  .button_signin{
     margin-top: 285px;
   }
   
-  .button__signup{
+  .button_signup{
     margin-top: 216px;
   }
 }

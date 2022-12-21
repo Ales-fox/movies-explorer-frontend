@@ -62,7 +62,7 @@ function SignForm(props) {
                 <input type="password" id='password' className={`signForm__input input  ${error.password ? `signForm__input_error` : ''}`} name='password' onChange={handleChangeValue} value={value.password} required></input>
                 <span className={`input-error input-error_password ${(error.password && errorMessage.password)? 'input-error_active' : ''}`}>{errorMessage.password}</span>
                 
-                <button className={`button button-submit ${(path==='/signin')? 'button__signin' :  'button__signup'}`} type="submit" disabled={!formValid}>{buttonTitle}</button>
+                <button className={`button button-submit ${(path==='/signin')? 'button_signin' :  'button_signup'}`} type="submit" disabled={!formValid}>{buttonTitle}</button>
             </form>
                 <p className='pageSign__text'>{textUnderSubmit}<Link className='pageSign__link link' to={link}>{linkText}</Link></p>
         </main>
