@@ -1,6 +1,7 @@
 .techs{
   padding: 100px 70px;
   background-color:  #F5F5F5;
+  box-sizing: border-box;
 }
 
 .techs__title{
@@ -49,6 +50,10 @@
   letter-spacing: -0.04em;
 }
 
+.stacks__cell:last-of-type{
+  margin-right: 0px;
+}
+
 @media screen and (max-width: 768px) {
     .techs {
         padding: 90px 50px;
@@ -71,10 +76,19 @@
         width: 84px;
     }
 }
+/*ищу скролл*/
+@media screen and (max-width:350px) {
+  .techs {
+    padding: 50px 20px;
+  }
 
+  .techs__paragraph{
+    width: 90%;
+  }
+}
 @media screen and (max-width: 320px) {
   .techs {
-      padding: 70px 14px;
+    padding: 70px 14px;
   }
 
   .techs__title{

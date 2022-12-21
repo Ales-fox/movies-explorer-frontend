@@ -20,7 +20,7 @@ function Header(props) {
                 <img className='icon' src={icon} alt='Иконка' />
                 Аккаунт
             </Link>
-            <button type="button" className='menu__hamburger' onClick={onMenuHamburgerClick}/>
+            <button type="button" className='menu-hamburger' onClick={onMenuHamburgerClick}/>
             
         </header>     
     )

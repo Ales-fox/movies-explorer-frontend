@@ -1,4 +1,4 @@
-.checkbox__container {
+.checkbox {
   margin: 0 auto;
   display: flex;
   flex-direction:  row;
@@ -14,7 +14,7 @@
   position: relative;
 }
   
-.checkbox {  
+.checkbox__input {  
   display:none; /* Отключает стандартный чекбокс */
 }
   
@@ -66,17 +66,17 @@ input:checked + .slider:before {
 }
 
 @media screen and (max-width: 768px) {
-  .checkbox__container{
+  .checkbox{
     padding-bottom: 51px;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .checkbox__title{
-    font-size: 11px;
-  }
-
-  .checkbox__container{
+  .checkbox{
     padding-bottom: 63px;
   }
+  
+  .checkbox__title{
+    font-size: 11px;
+  }  
 }

@@ -32,6 +32,7 @@ function Login(props) {
                 onSubmit={handleSubmit}
                 onChange={handleChangeValue}
                 value={value}
+                path='/signin'
             />
     )
 }

@@ -46,7 +46,7 @@
   margin-right: 7px;
 }
 
-.menu__hamburger{
+.menu-hamburger{
   display: none;
   background: url('../../images/menu-hamburger.png');
   border: none;
@@ -68,7 +68,7 @@
     display: none;
   }
 
-  .menu__hamburger{
+  .menu-hamburger{
     display: block;
   }
 }

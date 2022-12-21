@@ -12,10 +12,10 @@ function AboutProject(props) {
                 <p className="table__text">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
             </div>
             <div className="table_rect table">
-               <p className="table-cell_rect table-cell_rect_blue">1 неделя</p>
-               <p className="table-cell_rect table-cell_rect_gray">4 недели</p>
-               <p className="table-cell">Back-end</p>
-               <p className="table-cell">Front-end</p>
+               <p className="table__cell table__cell_rect table__cell_rect_blue">1 неделя</p>
+               <p className="table__cell table__cell_rect table__cell_rect_gray">4 недели</p>
+               <p className="table__cell table__cell_no-rect">Back-end</p>
+               <p className="table__cell table__cell_no-rect">Front-end</p>
             </div>            
         </section>
     )

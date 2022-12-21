@@ -58,6 +58,12 @@
         margin-bottom: 314px;
     }
 }
+/*ищу скролл*/
+@media screen and (max-width: 350px) {
+  .nav {
+      max-width: 329px;
+  }
+}
 
 @media screen and (max-width: 320px) {
   .nav {

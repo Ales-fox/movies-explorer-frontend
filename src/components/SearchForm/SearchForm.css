@@ -1,6 +1,7 @@
 .searchForm{
   width: 100%;
   border: 1.5px solid rgba(170, 170, 170, 0.2);
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   margin-top: 70px;
@@ -20,6 +21,7 @@
   line-height: 20px;
   color: #A0A0A0;
   background-color:  #FAFAFA;
+  border-radius: 8px;
 }
 
 .searchForm__input:focus{
@@ -45,6 +47,12 @@
 .button-search:hover{
   opacity: 0.6;
   cursor: pointer;
+}
+/*ищу скролл*/
+@media screen and (max-width: 470px) {
+  .searchForm__input{
+    width: 50%;
+  }
 }
 
 @media screen and (max-width: 320px) {

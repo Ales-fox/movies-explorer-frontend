@@ -3,6 +3,7 @@
     max-width: 364px;
     background: #FFFFFF;
     box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
 }
 
 .moviesCard__about{
@@ -69,6 +70,7 @@
 
 .moviesCard__img{
     width: 100%;
+    border-radius: 6px 6px 0px 0px ;
 }
 
 .moviesCard__text{
@@ -94,7 +96,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 320px) {     
     .moviesCard__header{
         font-size: 12px;
         line-height: 15px;

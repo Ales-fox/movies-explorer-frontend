@@ -8,7 +8,8 @@ function Register(props) {
             buttonTitle='Зарегистрироваться'
             textUnderSubmit='Уже зарегистрированы?'
             link='/signin'
-            linkText='Войти'/>
+            linkText='Войти'
+            path='/signup'/>
     )
 }
 
