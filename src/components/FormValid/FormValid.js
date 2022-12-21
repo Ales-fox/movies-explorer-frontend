@@ -3,7 +3,7 @@ import { reEmail, inputErrorMessage as message } from "../../constants";
 export const Validation = (e, setErrorMessage, setError) => {
     if (!e.target.value) {
         emptyInput(e, setErrorMessage, setError);
-        return
+        return;
     } else if (e.target.name === 'email') {
         if (!reEmail.test(String(e.target.value).toLowerCase())) {
             setErrorMessage(old => ({
@@ -46,6 +46,16 @@ export const Validation = (e, setErrorMessage, setError) => {
             correctInput(e, setErrorMessage, setError);
         }
         return
+    } 
+}
+
+export const ValidationSearch = (e, setError) => {
+    if (!e.target.value) {
+        setError(true);
+        return;
+    } else {
+        setError(false);
+        return;
     }
 }
 

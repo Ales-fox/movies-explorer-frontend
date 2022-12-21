@@ -43,7 +43,6 @@ function SignForm(props) {
    
     
     return (
-        <>  
         <main className='pageSign'>
             <img className='pageSign__logo' src={logo} alt='logo'/>
             <h1 className="pageSign__header">{header}</h1>
@@ -66,8 +65,7 @@ function SignForm(props) {
                 <button className={`button button-submit ${(path==='/signin')? 'button__signin' :  'button__signup'}`} type="submit" disabled={!formValid}>{buttonTitle}</button>
             </form>
                 <p className='pageSign__text'>{textUnderSubmit}<Link className='pageSign__link link' to={link}>{linkText}</Link></p>
-        </main>            
-        </>
+        </main>
     )
 }
 
