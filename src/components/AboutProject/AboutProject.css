@@ -1,0 +1,156 @@
+.about{
+  max-width: 1140px;
+  width: 90%;
+  margin: 110px auto 110px auto;
+}
+
+.header-block{
+  margin-bottom: 23px;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+}
+
+.line{
+  height: 1px;
+  width: 100%;
+  background-color: black;
+}
+
+.table{
+  display: grid;
+}
+
+.table_text{
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.6fr 1fr;
+  grid-gap: 26px 40px;
+  margin-bottom: 110px;  
+  margin-top: 70px;
+}
+
+.table__header{
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+}
+
+.table__text{
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.table_rect{
+  grid-template-columns: 0.25fr 1fr;
+  grid-template-rows: 1fr 0.48fr;
+  grid-gap: 14px 0;
+}
+.table__cell{
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+}
+
+.table__cell_rect{
+  padding: 9px 0;
+  font-weight: 400;
+}
+
+.table__cell_rect_blue{
+  background:  #3456F3;
+  color: white;
+}
+
+.table__cell_rect_gray{
+  background:  #F2F2F2;
+}
+
+.table__cell_no-rect{
+  color: #A0A0A0;
+  font-weight: 500;
+
+}
+
+@media screen and (max-width: 768px) {
+    .about {
+        margin-top: 90px;
+        margin-bottom: 90px;
+        max-width: 668px;
+    }
+
+    .table_text{
+        margin-bottom: 93px;
+        grid-gap: 22px 30px;
+    }
+
+    .table__text{
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .table_rect{
+        grid-template-columns: 0.265fr 1fr;
+    }
+}
+
+@media screen and (max-width: 320px) {
+  .about {
+      margin: 70px 18px;
+      max-width: 284px;
+  }
+
+  .header-block{
+    margin-bottom: 28px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .table_text{
+      margin-top: 60px;
+      margin-bottom: 60px;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, auto);
+      grid-row-gap: 16px;
+  }
+
+  .table__header{
+    font-size: 18px;
+    line-height: 22px;
+    height: fit-content;
+  }
+
+  .table__text_1{
+    grid-row: 2/3;
+    margin-bottom: 40px;
+  }
+
+  .table__text{
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .table_rect{
+    grid-template-columns: 0.55fr 1fr;
+    grid-gap: 10px 0;
+  }
+
+  .table__cell{
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  .table__cell_rect{
+    padding: 11px 0px;
+  }
+}

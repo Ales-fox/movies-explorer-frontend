@@ -1,0 +1,155 @@
+.pageSign{
+  width: 100%;
+  max-width: 396px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.signForm{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageSign__logo{
+  align-self: flex-start;
+  margin-left: 0;
+  margin-bottom: 40px;
+}
+
+.pageSign__header{
+  width: 100%;
+  margin-bottom: 40px;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;  
+  text-align: left;
+}
+
+.label{
+  color: #A0A0A0;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.input{
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.input:hover{
+  border-bottom: 1px solid #3456F3;
+}
+
+.input:focus-visible{
+  outline: none;
+}
+
+.signForm__input{  
+  border-bottom: 1px solid #E8E8E8;
+  padding-bottom: 10px;
+  margin-bottom: 24px;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.signForm__input_error{
+  color: #EE3465;
+}
+.input-error{
+  display: none;
+  margin-top: -18px;
+  margin-bottom: 6px;
+  width: 100%;
+  color: #EE3465;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.input-error_active{
+  display: block;
+}
+.button-submit{
+  border: none;
+  color: white;
+  padding-top: 13px;
+  padding-bottom: 15px;
+  margin-bottom: 16px;
+  border-radius: 3px;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.button_signin{
+  margin-top: 197px;
+}
+
+.button_signup{
+  margin-top: 128px;
+}
+
+.pageSign__text{
+  text-align: center;
+  color: #A0A0A0;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.pageSign__link{
+  margin-left: 6px;
+  color: #3456F3;
+}
+
+@media screen and (max-width: 500px) {
+  .pageSign__logo{
+    margin: 56px auto 50px;
+  }
+
+  .pageSign__header{
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .signForm{
+    width: 90%;
+    max-width: 260px;
+  }
+
+  .signForm__input:nth-of-type(3){  
+    margin-bottom: -69px;
+  }
+
+  .button_signin{
+    margin-top: 285px;
+  }
+  
+  .button_signup{
+    margin-top: 216px;
+  }
+}

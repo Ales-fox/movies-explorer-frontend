@@ -1,0 +1,90 @@
+.footer{
+  max-width: 1140px;
+  width: 90%;
+  flex-shrink: 0;
+  margin: 0px auto ;
+  padding-top: 79px;
+  padding-bottom: 20px;
+}
+
+.footer__title{
+  margin-bottom: 20px;  
+  color: #A0A0A0;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+}
+
+.footer__text{
+  display: flex;
+  justify-content: space-between;
+  border-top: #E8E8E8 1px solid;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+.footer__year{
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.footer__sites{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer__site{
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: right;
+}
+
+.footer__site:first-of-type{
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    margin: 0px 10px;
+  }
+
+  .footer__title{
+    margin-bottom: 21px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .footer__text{
+    margin-top: 30px;
+    margin-bottom: 0px;
+    flex-direction: column-reverse;
+  }
+
+  .footer__sites{
+    flex-direction: column;
+  }
+
+  .footer__site{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .footer__year{
+    margin-top: 18px;
+    width: 100%;
+    text-align: center;
+    color: #A0A0A0;
+  }
+}

@@ -1,0 +1,108 @@
+.layer{
+  display: none;
+  background: #000000;
+  opacity: 0.3;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top:0px;
+  right: 0px;
+  z-index:2;
+}
+
+.layer_darkened{  
+  display: block;
+}
+
+.menu{
+  display: none;
+  position:fixed;
+  height: 100vh;
+  z-index: 3;
+  background-color: #FAFAFA;
+  width: 68%;
+  max-width: 520px;
+  top:0px;
+  right: 0px;
+}
+
+.menu_open{
+  display: flex;
+  flex-direction: column;
+}
+
+.button-close{
+  background-image: url('../../images/button-close.svg');
+  background-color: initial;
+  background-position: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  margin: 22.44px 22.44px 105.44px auto;
+  display: flex;
+}
+
+.menu__links{
+  margin: 0px auto;
+  width: 70%;
+  text-align: center;
+  flex:1;
+}
+
+.menu__link{
+  margin-bottom: 28px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.menu__link:last-of-type{
+  margin-bottom: 0px;
+}
+
+.link_active{
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.menu__link-button{
+  display:flex ;
+  width: fit-content;
+  flex-shrink: 0;
+  margin: 0px auto 90px;
+}
+
+@media screen and (max-width: 600px) {
+  .menu{
+    width: 100%;
+    max-width:100%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .menu{
+    width: 100%;
+  }
+  .layer_darkened{  
+    display: none;
+  }
+
+  .button-close{
+    margin: 13.44px 13.44px 99.44px auto;
+  }
+
+  .menu__link{
+    margin-bottom: 24px;
+  }
+
+  .menu__link_active{
+    text-underline-offset: 7px;
+  }
+
+  .menu__link-button{
+    margin-bottom: 46px;
+  }
+}

@@ -1,0 +1,114 @@
+.moviesCard{
+    width: 100%;
+    max-width: 364px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+}
+
+.moviesCard__about{
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px;
+}
+
+.moviesCard__main{
+    display: flex;
+    margin-bottom: 17px;
+}
+.moviesCard__header{
+    width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: 'Inter', "Arial", serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.button-like{
+    background-image: url(../../images/like.svg);
+    background-repeat: no-repeat;
+    background: transparent;
+    border: none;
+    padding: 0px 0px;
+    width: 14px;
+    height: 12px;
+}
+
+.button-like:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.button-like_active{
+    background-image: url(../../images/like_active.svg);
+}
+
+.button-delete{
+    background-image: url(../../images/delete.svg);
+    background-position: right center;
+    background-color: white;
+    background-repeat: no-repeat; 
+    border: none;
+    padding: 0px 0px;
+    margin-right: 10px;
+    width: 10%;
+    height: 11.58px;
+    opacity: 0;
+}
+
+.button-delete:hover{
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.moviesCard__about:hover .button-delete{
+    opacity: 1;
+}
+
+.moviesCard__img{
+    width: 100%;
+    border-radius: 6px 6px 0px 0px ;
+}
+
+.moviesCard__text{
+    width: fit-content;
+    font-family: 'Inter', "Arial", serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    color: #A0A0A0;
+}
+
+@media screen and (max-width: 768px) {
+  .moviesCard{
+    max-width: 339px;
+  }
+
+  .moviesCard__main{
+    margin-bottom: 15px;
+ }
+  .moviesCard__about{
+    padding: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) {     
+    .moviesCard__header{
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .moviesCard__main{
+        margin-bottom: 14px;
+    }
+
+    .moviesCard__text{
+        font-size: 10px;
+        line-height: 12px;
+    }
+}

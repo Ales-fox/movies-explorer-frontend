@@ -1,0 +1,135 @@
+.aboutMe{
+  margin: 110px 70px 125px;
+  position: relative;
+}
+
+.aboutMe__photo{
+  position:absolute;
+  width: 24%;
+  max-width: 270px;
+  height: 37%;
+  max-height: 327px;
+  border-radius: 10px;
+  top: 117px;
+  right: 0;
+}
+.aboutMe__name{
+  width: 52.5%;
+  margin: 66px 0 18px;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+}
+
+.aboutMe__job{
+  width: 52.5%;
+  margin-bottom: 26px;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.aboutMe__about{
+  width: 52.5%;
+  margin-bottom: 99px;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.aboutMe__git{
+  width: fit-content;
+  margin-bottom: 101px;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutMe {
+    margin: 90px 50px;
+  }
+
+  .aboutMe__photo{
+    max-width: 255px;
+    width: 40%;
+    max-height: 307px;
+    height: 35%;
+  }
+
+  .aboutMe__name {
+    margin-bottom: 16px;
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .aboutMe__job{
+    margin-bottom: 20px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .aboutMe__about{
+    margin-bottom: 87px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .aboutMe__git{
+    margin-bottom: 91px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .aboutMe__photo{
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .aboutMe {
+    margin: 70px 14px;
+  }
+
+  .aboutMe__photo{
+    position: static;
+    width: 100%;
+    max-width: 292px;
+    max-height: 352px;
+    margin: 60px auto 40px;
+    display: flex;
+  }
+
+  .aboutMe__name {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .aboutMe__job{
+    width: 100%;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .aboutMe__about{
+    width: 100%;
+    margin-bottom: 40px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .aboutMe__git{
+    margin-bottom: 70px;
+  }
+}

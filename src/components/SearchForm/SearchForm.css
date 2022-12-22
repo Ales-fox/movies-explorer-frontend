@@ -1,0 +1,76 @@
+.searchForm{
+  width: 100%;
+  border: 1.5px solid rgba(170, 170, 170, 0.2);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 70px;
+  margin-bottom: 26px;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+  
+.searchForm__input{
+  flex-grow: 15;
+  padding: 25px 0px 25px 25px;
+  border: none;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #A0A0A0;
+  background-color:  #FAFAFA;
+  border-radius: 8px;
+}
+
+.searchForm__input:focus{
+  outline-color: #3456F3;
+}
+  
+.button-search{
+  margin: auto;
+  width: 100px;
+  height: 52px;
+  box-sizing: border-box;
+  padding: 17px 25px;
+  border: none;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.button-search:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+/*ищу скролл*/
+@media screen and (max-width: 470px) {
+  .searchForm__input{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .searchForm{
+    margin: 70px 0 30px;
+    padding-right: 6px;
+  }
+
+  .searchForm__input{
+    width: 65%;
+    padding: 20px 0px 20px 12px;
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .button-search{
+    padding: 13px 10px;
+    width: 80px;
+    height: 44px;
+  }
+}

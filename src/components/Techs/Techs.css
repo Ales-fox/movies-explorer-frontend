@@ -1,0 +1,121 @@
+.techs{
+  padding: 100px 70px;
+  background-color:  #F5F5F5;
+  box-sizing: border-box;
+}
+
+.techs__title{
+  margin: 90px auto 26px auto;
+  text-align: center;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+}
+
+.techs__paragraph{
+  width: 40%;
+  margin: auto;
+  margin-bottom: 100px;
+  text-align: center;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.04em;
+}
+
+.stacks{
+  display: flex;
+  justify-content: center;
+}
+
+.stacks__cell{
+  background: #E8E8E8;
+  border-radius: 10px;
+  margin-right: 10px;
+  width: 90px;
+  height: 60px;
+  box-sizing: border-box;
+  padding-top: 21px;
+  padding-bottom: 22px;
+  text-align: center;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: -0.04em;
+}
+
+.stacks__cell:last-of-type{
+  margin-right: 0px;
+}
+
+@media screen and (max-width: 768px) {
+    .techs {
+        padding: 90px 50px;
+    }
+
+    .techs__title{
+        margin-top: 80px;
+        margin-bottom: 22px;
+    }
+
+    .techs__paragraph{
+        margin-bottom: 83px;
+        width: 60%;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .stacks__cell{
+        display: inline-block;
+        width: 84px;
+    }
+}
+/*ищу скролл*/
+@media screen and (max-width:350px) {
+  .techs {
+    padding: 50px 20px;
+  }
+
+  .techs__paragraph{
+    width: 90%;
+  }
+}
+@media screen and (max-width: 320px) {
+  .techs {
+    padding: 70px 14px;
+  }
+
+  .techs__title{
+    margin-top: 60px;
+    margin-bottom: 24px;
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .techs__paragraph{
+    width: 100%;
+    margin-bottom: 50px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .stacks{
+    margin: 0px 57px;
+    flex-wrap: wrap;
+  }
+  .stacks__cell:nth-child(even){
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+
+  .stacks__cell:last-child{
+    margin-left: 0px;
+    margin-right: auto;
+  }
+}

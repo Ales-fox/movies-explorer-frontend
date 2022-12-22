@@ -1,0 +1,32 @@
+@import url(./vendor/normalize.css);
+
+@import url(./vendor/fonts/fonts.css);
+
+/*Общие стили*/
+html {
+  scroll-behavior: smooth;
+}
+p, h1, h2, h3, h4, ul {
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  font-family: 'Inter', "Arial", serif;
+}
+
+.link:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.button {
+  background: #3456F3;
+}
+
+.list{
+  list-style-type: none;
+  padding: 0;
+}
