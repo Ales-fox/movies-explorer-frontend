@@ -12,7 +12,7 @@ function Movies(props) {
             <Header onMenuHamburgerClick={onMenuHamburgerClick}/>
             <main className='movies'>
                 <SearchForm onClick={onSearchClick}/>
-                <MoviesCardList cardsList={cardsList} onCardLike={onCardLike} />                
+                <MoviesCardList cardsList={cardsList} onCardLike={onCardLike}/>                
             </main>
             <Footer />
         </div>        

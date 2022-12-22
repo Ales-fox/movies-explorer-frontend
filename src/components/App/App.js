@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useHistory } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 //Импорт компонентов
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -11,17 +11,39 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Movies from '../Movies/Movies';
 import HeaderMenuHamburger from '../HeaderMenuHamburger/HeaderMenuHamburger';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
-import { constMoviesCards } from '../../constants';
-import { savedMoviesCard } from '../../constants.js';
+
+import * as moviesApi from '../../utils/MoviesApi';
+import * as mainApi from '../../utils/MainApi';
+import * as authApi from '../../utils/authApi';
+import { constMoviesCards, savedMoviesCard } from '../../constants';
 
 import './App.css';
 
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true); // Потом изменить на false
-  const [userInfo, setUserInfo] = useState({name: 'Александра', email: 'Tuturu@mail.ru'});
-  const [moviesCards, setMoviesCards] = useState(constMoviesCards);
+  const [loggedIn, setLoggedIn] = useState(false); // Потом изменить на false
+  const [userInfo, setUserInfo] = useState({name: 'Whos', email: 'Whos@mail.ru'});
+  const [moviesCards, setMoviesCards] = useState([]);
+  const [savedMoviesCards, setSavedMoviesCards] = useState([]);
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const [errorServerMessage, setErrorServerMessage] = useState(''); //Ошибка с сервера при регистрации/авторизации
+
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (loggedIn) {
+      mainApi.getUserInfo()
+        .then((itemsUserInfo) => {
+          setUserInfo(itemsUserInfo);
+          console.dir(itemsUserInfo);
+        })
+        .catch(err => console.dir(err));
+    }
+  }, [loggedIn])
+
+  useEffect(() => {
+    //Должна быть проверка на состояние loggedIn
+   }, [loggedIn]);
 
   const handleHamburgerPopupClick = () => {
     setPopupOpen(true);
@@ -29,26 +51,74 @@ function App() {
 
   const closePopups = () => {
     setPopupOpen(false);
-    console.log(isPopupOpen);
   }
   
+  
+
+  // Регистрация
+  const handleRegister = (name, email, password) => {
+    return authApi.register(name, email, password)
+      .then((data) => {
+        if (!data) { return Promise.reject('No data') };
+        console.log('Вы успешно зарегестрировались');
+        handleLogin(email, password);
+      })
+      .catch((err) => {        
+        setErrorServerMessage(err);
+      });
+  }
+  //Авторизация
+  const handleLogin = (email, password) => {
+    return authApi.authorize(email, password)
+      .then((data) => {
+        if (!data?.token) { return Promise.reject('No data') };
+        console.dir(data);
+        setLoggedIn(true);
+        navigate('/movies');
+      })
+      .catch((err) => {        
+        setErrorServerMessage(err);
+      })
+  }
+  // Проверка токена пользователя при автоматической авторизации
+  const tokenCheck = () => {    
+    //Проверяем токен пользователя
+    authApi.getContent()
+      .then((res) => {
+        if (res) {
+          const userData = {
+            name: res.name,
+            email: res.email
+          }
+          setLoggedIn(true);
+          setUserInfo(userData);
+          navigate('/movies');
+        }
+      }).catch(err => console.log(err));
+  }
+
   useEffect(() => {
-   //Должна быть проверка на состояние loggedIn
-  }, [loggedIn]);
+    tokenCheck();
+  }, []);
 
   //Выход из системы
   const handleLogOutClick = () => {
-    console.log('Вышли');
-    /*authApi.logOut()
+    authApi.logOut()
     .then((data) => {
-      history.push('/signin'); //Переадресация      
+      navigate('/signin');
+      setLoggedIn(false);
+      console.log('Вышли');
     })
-    .catch((err) => console.dir(err)); */ //Апи пока нет
+    .catch((err) => console.dir(err));
   }
 
   const handleSearchClick = () => {
-    console.log('Поиск');
-    //Click по кнопке Поиск
+    // Пока просто отдает все фильмы
+    moviesApi.getAllFilms()
+      .then((itemsFilm) => {
+        setMoviesCards(itemsFilm);
+        console.log(itemsFilm);
+      }).catch(err => console.log(err));
   }
 
   function handleCardLike(card) {
@@ -71,23 +141,23 @@ function App() {
         <Route path='/'>
           <Route index element={<Main/>} />
 
-          <Route path='/signup' element={<Register/>}>
+          <Route path='/signup' element={<Register onRegister={handleRegister} errorServerMessage={errorServerMessage} navigate={navigate}/>}>
           </Route>
 
-          <Route path='/signin' element={<Login/>}>
+          <Route path='/signin' element={<Login onLogin={handleLogin} errorServerMessage={errorServerMessage} navigate={navigate}/>}>
           </Route>          
 
           <Route element={<ProtectedRoute loggedIn={loggedIn}/>}>
             <Route path='/profile' element={<Profile onMenuHamburgerClick={handleHamburgerPopupClick} userInfo={userInfo} logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} />}/>
 
             <Route path='/movies' element={
-                <Movies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} cardsList={moviesCards} />}>
+                <Movies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} cardsList={moviesCards}/>}>
               <Route path='/movies' element={
                 <button className='button-like button-like_active' type="button" onClick={handleCardLike}/>                 
                 }/>
             </Route>
 
-            <Route path='/saved-movies' element={<SavedMovies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} cardsList={savedMoviesCard}/>}>
+            <Route path='/saved-movies' element={<SavedMovies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} cardsList={savedMoviesCards}/>}>
               <Route path='/saved-movies' element={
                 <button className="button-delete" type="button" onClick={handleCardDelete}/>
                 }/>

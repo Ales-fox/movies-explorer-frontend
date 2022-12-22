@@ -1,9 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import icon from '../../images/iconAccount.svg';
 import './HeaderMenuHamburger.css'
 
 function HeaderMenuHamburger(props) {
     const { isOpen, onClose } = props;
+
+    const navigate = useNavigate();
+
+    function onClick() {
+        onClose();
+        navigate('/profile');
+    }
 
     return (
         <>
@@ -15,10 +22,10 @@ function HeaderMenuHamburger(props) {
                 <li className='menu__link'><Link className='link link_active' to='/movies'>Фильмы</Link></li>
                 <li className='menu__link'><Link className='link' to='/saved-movies'>Сохраненные фильмы</Link></li>
             </ul>
-            <Link className='link link-button menu__link-button' to='/profile'>
+            <button type='button' onClick={onClick} className='link link-button menu__link-button'>
                 <img className='icon' src={icon} alt='Иконка' />
                 Аккаунт
-            </Link>
+            </button>
         </nav>
         </>   
     )

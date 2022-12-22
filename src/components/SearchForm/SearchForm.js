@@ -11,13 +11,11 @@ function SearchForm(props) {
     const [formValid, setFormValid] = useState(false);
 
     useEffect(() => {
-        console.log(error );
         if (error === true) {
             setFormValid(false);
         } else {
             setFormValid(true);
         }
-        console.log(formValid);
     }, [error]);
 
     // Управление инпутами
@@ -36,7 +34,7 @@ function SearchForm(props) {
         <>
             <form className="searchForm" onSubmit={handleSubmit}>
                 <input type='text' className='searchForm__input' name='film' onChange={handleChangeValue} value={value} placeholder='Фильм' required></input>
-                <button type="submit" className="button-search button" disabled={!formValid} >Поиск</button>
+                <button type="submit" className="button-search button" disabled={!formValid} onClick={props.onClick} >Поиск</button>
             </form>
             <FilterCheckbox />
         </>        

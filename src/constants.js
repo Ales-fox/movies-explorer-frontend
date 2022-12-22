@@ -169,3 +169,7 @@ export const inputErrorMessage = {
     passwordIncorrect: 'Пароль должен быть длиннее 8 символов',
     nameIncorrrect: 'Имя должно быть длиннее 3 символов'
 }
+
+export const baseURL = 'https://api.movies.nomoredomains.club';
+export const moviesURL = 'https://api.nomoreparties.co/beatfilm-movies';
+export const moviesImgURL = 'https://api.nomoreparties.co';
