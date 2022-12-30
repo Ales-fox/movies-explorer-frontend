@@ -1,4 +1,4 @@
-import { baseURL } from "../constants";
+import { baseURL, moviesImgURL } from "../constants";
 
 export const getUserInfo = () => {
     return fetch(`${baseURL}/users/me`, {
@@ -10,25 +10,53 @@ export const getUserInfo = () => {
     }).then(res => getResponseData(res))
 }
 
-export const putLikes = (card) => {
+export const changeLikeCardStatus = (card, isLiked) =>{
+    return (isLiked) ? putLikes(card) : deleteLikes(card);
+}
+
+const putLikes = (card) => {
+    const {
+        country,
+        director,
+        duration,
+        year,
+        description,
+        trailerLink,
+        id,
+        nameRU,
+        nameEN,
+    } = card;
+
     return fetch(`${baseURL}/movies`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         credentials: 'include',
-        body: JSON.stringify(card),
-    }).then(res => this._getResponseData(res));
+        body: JSON.stringify({
+            country,
+            director,
+            duration,
+            year,
+            description,
+            image: `${moviesImgURL}${card.image.url}`,
+            trailerLink,
+            thumbnail:`${moviesImgURL}${card.image.formats.thumbnail.url}`,
+            id,
+            nameRU,
+            nameEN,
+        } ),
+    }).then(res => getResponseData(res));
 }
 
-export const deleteLikes = (id) => {
-    return fetch(`${baseURL}/${id}`, {
+const deleteLikes = (card) => {
+    return fetch(`${baseURL}/movies/${card._id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
         },
         credentials: 'include',        
-    }).then(res => this._getResponseData(res));
+    }).then(res => getResponseData(res));
 }
 
 function getResponseData(res) {

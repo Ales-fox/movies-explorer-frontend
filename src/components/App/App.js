@@ -15,7 +15,6 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import * as moviesApi from '../../utils/MoviesApi';
 import * as mainApi from '../../utils/MainApi';
 import * as authApi from '../../utils/authApi';
-import { constMoviesCards, savedMoviesCard } from '../../constants';
 
 import './App.css';
 
@@ -42,8 +41,7 @@ function App() {
   }, [loggedIn])
 
   useEffect(() => {
-    //Должна быть проверка на состояние loggedIn
-   }, [loggedIn]);
+   }, [moviesCards]);
 
   const handleHamburgerPopupClick = () => {
     setPopupOpen(true);
@@ -117,22 +115,56 @@ function App() {
     moviesApi.getAllFilms()
       .then((itemsFilm) => {
         setMoviesCards(itemsFilm);
-        console.log(itemsFilm);
       }).catch(err => console.log(err));
   }
 
+
+
   function handleCardLike(card) {
-    /*// Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    // Снова проверяем, есть ли уже лайк на этой карточке    
+    const isLiked = savedMoviesCards.some(i => i.id === card.id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => c._id === card._id ? newCard: c));
-    }).catch(e => console.error(e));*/
+    mainApi.changeLikeCardStatus(card, !isLiked)
+      .then((data) => {        
+        if (!isLiked) {
+          handleCardSetLike(data);          
+        } else {
+          handleCardDeleteLike(data, card);
+        };
+      })
+      .catch((err) => console.error(err))
   }
 
-  function handleCardDelete(card) {
-    console.log('delete');
+  function handleCardSetLike(data) {
+    setSavedMoviesCards(old => ([
+      ...old,
+      data
+    ]));
+    const newListCards=moviesCards.map(o => {
+      if (o.id===data.id) {
+        o._id=data._id;
+        return o
+      }
+      return o;
+    });
+    setMoviesCards(newListCards);
+  }
+
+  function handleCardDeleteLike(data, card) {
+    setSavedMoviesCards((state) => state.filter(item => item.id !== card.id));
+    const newListCards=moviesCards.map(o => {
+      if (o.id===data.id) {
+        delete o._id;
+        return o
+      }
+        return o;
+    });
+    setMoviesCards(newListCards);
+  }
+
+  function handleCardDelete() {
+    
   }
 
   return (
@@ -151,13 +183,10 @@ function App() {
             <Route path='/profile' element={<Profile onMenuHamburgerClick={handleHamburgerPopupClick} userInfo={userInfo} logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} />}/>
 
             <Route path='/movies' element={
-                <Movies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} cardsList={moviesCards}/>}>
-              <Route path='/movies' element={
-                <button className='button-like button-like_active' type="button" onClick={handleCardLike}/>                 
-                }/>
+                <Movies onMenuHamburgerClick={handleHamburgerPopupClick} onSearch={handleSearchClick} cardsList={moviesCards} buttonClass={`button-like`} onCardLike={handleCardLike} savedMoviesCards={savedMoviesCards}/>}>             
             </Route>
 
-            <Route path='/saved-movies' element={<SavedMovies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} cardsList={savedMoviesCards}/>}>
+            <Route path='/saved-movies' element={<SavedMovies onMenuHamburgerClick={handleHamburgerPopupClick} onSearchClick={handleSearchClick} cardsList={moviesCards}/>}>
               <Route path='/saved-movies' element={
                 <button className="button-delete" type="button" onClick={handleCardDelete}/>
                 }/>

@@ -3,10 +3,11 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
 function MoviesCardList(props) {    
-    const {  onCardLike, cardsList} = props;    
+    const {  onCardLike, cardsList, buttonClass, savedMoviesCards} = props;
+
     const [ index, setIndex ] = useState(0); // Показывает кол-во нажатий на кнопку Ещё
     const [ visibleCardsList, setVisibleCardsList] = useState([]); // Показывает кол-во видимых карточек сейчас
-    
+    const [ moreActive, setMoreActive ] = useState(true);
     let page_size; // Показывает кол-во карточек добавляющихся за раз
     const screenWidth = window.screen.width; // Ширина экрана
     if (screenWidth <= 3000 &  screenWidth > 768 ) {
@@ -21,26 +22,35 @@ function MoviesCardList(props) {
         const numberOfItems = page_size * ( index + 1 ); 
     
         const newArray = [];
-        
+
         for(let i= 0 ;i< cardsList.length ; i++ ){
-          if(i < numberOfItems) 
-              newArray.push(cardsList[i])
-        }
-    
+            if(i < numberOfItems) 
+                newArray.push(cardsList[i]);
+
+            if (newArray.length === cardsList.length) {
+                setMoreActive(false);
+                break;
+            }                        
+        }      
+            
+            
         setVisibleCardsList(newArray);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    } , [index]) // Реагирует на смену кол-ва нажатий на кнопку ещё
+    } , [index, cardsList]) // Реагирует на смену кол-ва нажатий на кнопку ещё
 
     return (        
         <>
             <div className="moviesCards">{
-                visibleCardsList.map((card) => (<MoviesCard key={card.id}
+                visibleCardsList.map((card) => (
+                    <MoviesCard key={card.id}
                     card={card}
                     onCardLike={onCardLike}
+                    buttonClass={buttonClass}
+                    savedMoviesCards={savedMoviesCards}
                     />
                 ))}
             </div>
-            <button type='button' className='button-more' onClick={ () => setIndex( index + 1)}>Ещё</button>     
+            {(moreActive)? <button type='button' className='button-more' onClick={ () => setIndex( index + 1)}>Ещё</button> : ''}     
         </>
     )
 }

@@ -46,16 +46,18 @@ export const Validation = (e, setErrorMessage, setError) => {
             correctInput(e, setErrorMessage, setError);
         }
         return
-    } 
+    }
 }
 
-export const ValidationSearch = (e, setError) => {
+export const ValidationSearch = (e, setError, setErrorMessage) => {
     if (!e.target.value) {
         setError(true);
-        return;
+        setErrorMessage(message.searchEmpty);
+        return false;
     } else {
         setError(false);
-        return;
+        setErrorMessage('');
+        return true;
     }
 }
 

@@ -8,6 +8,7 @@
   margin-bottom: 26px;
   padding-right: 10px;
   box-sizing: border-box;
+  position: relative;
 }
   
 .searchForm__input{
