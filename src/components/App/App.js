@@ -15,28 +15,23 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import * as moviesApi from '../../utils/MoviesApi';
 import * as mainApi from '../../utils/MainApi';
 import * as authApi from '../../utils/authApi';
+import { CurrentUserContextProvider } from '../../context/CurrentUserContext';
 
 import './App.css';
 
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false); // Потом изменить на false
-  const [userInfo, setUserInfo] = useState({name: 'Whos', email: 'Whos@mail.ru'});
   const [moviesCards, setMoviesCards] = useState([]);
   const [savedMoviesCards, setSavedMoviesCards] = useState([]);
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [errorServerMessage, setErrorServerMessage] = useState(''); //Ошибка с сервера при регистрации/авторизации
-
+  
   const navigate = useNavigate();
   
   useEffect(() => {
     if (loggedIn) {
-      mainApi.getUserInfo()
-        .then((itemsUserInfo) => {
-          setUserInfo(itemsUserInfo);
-          console.dir(itemsUserInfo);
-        })
-        .catch(err => console.dir(err));
+      // ?
     }
   }, [loggedIn])
 
@@ -49,9 +44,7 @@ function App() {
 
   const closePopups = () => {
     setPopupOpen(false);
-  }
-  
-  
+  }  
 
   // Регистрация
   const handleRegister = (name, email, password) => {
@@ -80,19 +73,21 @@ function App() {
   }
   // Проверка токена пользователя при автоматической авторизации
   const tokenCheck = () => {    
-    //Проверяем токен пользователя
-    authApi.getContent()
+    /*retrieveCurrentUser();*/
+    setLoggedIn(true);
+    navigate('/movies');
+    /*authApi.getContent()
       .then((res) => {
         if (res) {
           const userData = {
             name: res.name,
             email: res.email
           }
+          setCurrentUser(userData);
           setLoggedIn(true);
-          setUserInfo(userData);
           navigate('/movies');
         }
-      }).catch(err => console.log(err));
+      }).catch(err => console.log(err));*/
   }
 
   useEffect(() => {
@@ -117,8 +112,6 @@ function App() {
         setMoviesCards(itemsFilm);
       }).catch(err => console.log(err));
   }
-
-
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке    
@@ -164,12 +157,14 @@ function App() {
   }
 
   function handleCardDelete() {
-    
+
   }
 
   return (
+    <CurrentUserContextProvider > 
     <div className="App">
-      <Routes>
+           
+      <Routes>            
         <Route path='/'>
           <Route index element={<Main/>} />
 
@@ -180,7 +175,9 @@ function App() {
           </Route>          
 
           <Route element={<ProtectedRoute loggedIn={loggedIn}/>}>
-            <Route path='/profile' element={<Profile onMenuHamburgerClick={handleHamburgerPopupClick} userInfo={userInfo} logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} />}/>
+        
+            
+            <Route path='/profile' element={<Profile onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn} logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} />}/>
 
             <Route path='/movies' element={
                 <Movies onMenuHamburgerClick={handleHamburgerPopupClick} onSearch={handleSearchClick} cardsList={moviesCards} buttonClass={`button-like`} onCardLike={handleCardLike} savedMoviesCards={savedMoviesCards}/>}>             
@@ -191,13 +188,17 @@ function App() {
                 <button className="button-delete" type="button" onClick={handleCardDelete}/>
                 }/>
             </Route>
-          </Route>
-          
+           
+          </Route>          
           <Route path="*" element={<NotFoundPage />} />
-        </Route>             
+        </Route>
+                 
       </Routes>
+     
       <HeaderMenuHamburger isOpen={isPopupOpen} onClose={closePopups}/>
+      
     </div>
+    </CurrentUserContextProvider>
   ); 
 }
 

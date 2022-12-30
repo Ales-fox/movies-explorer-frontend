@@ -45,7 +45,7 @@ export const logOut = () => {
         })
 }
 
-export const getContent = () => {
+/*export const getContent = () => {
     return fetch(`${baseURL}/users/me`, {
         method: 'GET',
         headers: {
@@ -54,7 +54,7 @@ export const getContent = () => {
         credentials: 'include',
     })
         .then(res => getResponseData(res))
-}
+}*/
 
 //При ошибке с сервера мы отклоняем промис, чтобы ошибка не прошла дальше как нормальный ответ
 function getResponseData(res) {
