@@ -45,7 +45,7 @@
         width: 93%;
     }
 }
-/*ищу скролл*/
+
 @media screen and (max-width: 350px) {
   .promo {
       width: 88%;

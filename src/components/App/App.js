@@ -213,7 +213,7 @@ function App() {
            
       <Routes>            
         <Route path='/'>
-          <Route index element={<Main/>} />
+          <Route index element={<Main loggedIn={loggedIn}/>} />
 
           <Route path='/signup' element={<Register onRegister={handleRegister} errorServerMessage={errorServerMessage} navigate={navigate}/>}>
           </Route>
@@ -227,7 +227,7 @@ function App() {
             <Route path='/profile' element={<Profile onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn} logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} onEditProfileClick={handleEditProfile} />}/>
 
             <Route path='/movies' element={
-                <Movies onMenuHamburgerClick={handleHamburgerPopupClick} onSearch={handleSearchClick} searchPlaceholder={searchValue} isChecked={isChecked} cardsList={moviesCards} buttonClass={`button-like`} onCardLike={handleCardLike} savedMoviesCards={savedMoviesCards} errorFilm={errorFilm}/>}>             
+                <Movies onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn} onSearch={handleSearchClick} searchPlaceholder={searchValue} isChecked={isChecked} cardsList={moviesCards} buttonClass={`button-like`} onCardLike={handleCardLike} savedMoviesCards={savedMoviesCards} errorFilm={errorFilm}/>}>             
             </Route>
 
             <Route path='/saved-movies' element={

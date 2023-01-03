@@ -37,7 +37,9 @@ function SignForm(props) {
 
     return (
         <main className='pageSign'>
-            <img className='pageSign__logo' src={logo} alt='logo'/>
+            <Link className='pageSign__logo' to='/'>
+                <img className='logo' src={logo} alt='logo'/>
+            </Link>
             <h1 className="pageSign__header">{header}</h1>
             <form className="signForm" onSubmit={(e) => onSubmit(e, value)}>
                 { (pathname !== '/signin') ? 
