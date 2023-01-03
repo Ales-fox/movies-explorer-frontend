@@ -7,6 +7,19 @@
     gap: 37px 24px;
 }
 
+.moviesCards__error{
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  grid-column: 1/4;
+  color: #A0A0A0;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;  
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+}
+
 .button-more{
     width: 320px;
     margin: 50px auto 80px auto;

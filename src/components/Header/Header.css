@@ -15,10 +15,15 @@
 }
 
 .header__link{
+  margin-right: 16px;
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
   line-height: 18px;
+}
+
+.header__link:last-of-type{
+  margin-right: 0px;
 }
 
 .header__link:hover{
@@ -26,9 +31,8 @@
   cursor: pointer;
 }
 
-.header__link_bold{
+.header__link_active{
   font-weight: 500;
-  margin-right: 16px;
 }
 
 .link-button{

@@ -10,11 +10,28 @@ export const getUserInfo = () => {
     }).then(res => getResponseData(res))
 }
 
-export const changeLikeCardStatus = (card, isLiked) =>{
-    return (isLiked) ? putLikes(card) : deleteLikes(card);
+export const correctUserInfo = (name, email) => {
+    return fetch(`${baseURL}/users/me`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: 'include',
+        body: JSON.stringify({ name, email }),
+    }).then(res => getResponseData(res));
 }
 
-const putLikes = (card) => {
+export const getlikedMovies = () => {
+    return fetch(`${baseURL}/movies`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: 'include',
+    }).then(res => getResponseData(res))
+}
+
+export const putLikes = (card) => {
     const {
         country,
         director,
@@ -49,7 +66,7 @@ const putLikes = (card) => {
     }).then(res => getResponseData(res));
 }
 
-const deleteLikes = (card) => {
+export const deleteLikes = (card) => {
     return fetch(`${baseURL}/movies/${card._id}`, {
         method: "DELETE",
         headers: {

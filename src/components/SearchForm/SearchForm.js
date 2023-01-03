@@ -1,45 +1,72 @@
 import React, { useEffect, useState } from 'react';
 
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import { ValidationSearch } from '../FormValid/FormValid';
-import { inputErrorMessage as message } from "../../constants";
 import './SearchForm.css';
 
 function SearchForm(props) {
-    const [value, setValue] = useState(''); //Создаем переменную для инпутов
-
-    const [error, setError] = useState(true);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [formValid, setFormValid] = useState(false);
+    const {searchPlaceholder, isChecked} = props;
     
+    const [formSettings, setFormSettings] = useState({search: '', checked: false});// Переменная для инпута search и checkbox
+    const [placeholder, setPlaceholder] = useState(searchPlaceholder);
+    const [checked, setChecked] = useState(isChecked);
+
     useEffect(() => {
-        if (error === true) {
-            setFormValid(false);
-            setErrorMessage(message.searchEmpty);
-        } else {
-            setFormValid(true);
-            setErrorMessage('');
-        }
-    }, [error]);
+        setPlaceholder(searchPlaceholder);
+        setChecked(localStorage.getItem('isFilmShort') === 'true');
+    }, [searchPlaceholder])
 
     // Управление инпутами
     function handleChangeValue(e) {
-        setValue(e.target.value);
-        ValidationSearch(e, setError, setErrorMessage);
+        // ValidationSearch(e, setError, setErrorMessage);
+        setFormSettings(old => ({
+            ...old,
+            search: e.target.value
+        }));
+        console.log(formSettings);
     };
 
+    function handleChangeCheckbox(e) {
+        setChecked(!checked);
+        setFormSettings(old => ({
+            ...old,
+            checked: e.target.checked
+        }));
+    }
+    
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.onSearch(value); //Пока нет такой функции
+
+        if (formSettings.search === '') {
+            setPlaceholder('Нужно ввести ключевое слово');
+            console.log(placeholder);
+            return;
+        }
+
+        props.onSearch(formSettings);
+        setPlaceholder(formSettings?.search || placeholder);
+        setChecked(formSettings?.checked);
+        setFormSettings({ search: "", checked: false });
+        clearForm(e);
+    };
+
+    const clearForm = (e) => {
+        Array.from(e.target).forEach((input) => input.type === 'checkbox' ? input.checked && console.log('input checked: ', input.checked): input.value = "");
     };
 
     return (
         <>
-            <form className="searchForm" onSubmit={handleSubmit}>
-                <input type='text' className='searchForm__input' name='film' onChange={handleChangeValue} value={value} placeholder='Фильм' required></input>
-                <button type="submit" className="button-search button" disabled={!formValid} >Поиск</button>
+            <form className="searchForm" name="search" id="search" onSubmit={handleSubmit} autoComplete="off" noValidate>
+                <input 
+                    type='search' 
+                    className='searchForm__input' 
+                    name="search" 
+                    onChange={handleChangeValue} 
+                    value={formSettings.search} 
+                    placeholder={placeholder} 
+                    required/>
+                <button type="submit" className={`button-search button `} >Поиск</button>
             </form>
-            <FilterCheckbox />
+            <FilterCheckbox onChange={handleChangeCheckbox} checked={checked}/>
         </>        
     )
 }

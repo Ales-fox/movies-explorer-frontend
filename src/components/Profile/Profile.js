@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useCurrentUser } from '../../context/CurrentUserContext';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 import Header from "../Header/Header";
 import './Profile.css';
 
 function Profile(props) {
-    const { onMenuHamburgerClick, loggedIn, logOutLink, linkName, onClick } = props;
-    const {currentUser, retrieveCurrentUser} = useCurrentUser();
+    const { onMenuHamburgerClick, logOutLink, linkName, onClick } = props;
+    const currentUser = React.useContext(CurrentUserContext); // Подписываемся на контекст
     const [value, setValue] = useState({ email: currentUser.email, name: currentUser.name }); //Создаем переменную для инпутов
-
-    useEffect(() => {
-        retrieveCurrentUser();
-        setValue(currentUser);
-    }, [loggedIn])
 
     // Управление инпутами
     function handleChangeValue(e) {
@@ -25,7 +20,7 @@ function Profile(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const { email, name } = value;
-        /*props.onUpdateCurrentUser(email, name);*/ //Пока нет такой функции
+        props.onEditProfileClick(name, email);
     };
     return (
         <>

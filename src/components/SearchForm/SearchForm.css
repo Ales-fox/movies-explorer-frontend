@@ -49,6 +49,11 @@
   opacity: 0.6;
   cursor: pointer;
 }
+
+.button-search_inactive{  
+  color: #C2C2C2;
+  background-color: #F8F8F8;
+}
 /*ищу скролл*/
 @media screen and (max-width: 470px) {
   .searchForm__input{
