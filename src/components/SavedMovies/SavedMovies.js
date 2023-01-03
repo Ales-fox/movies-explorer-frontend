@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Footer from "../Footer/Footer";
@@ -8,7 +7,7 @@ import Footer from "../Footer/Footer";
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function SavedMovies(props) {
-    const { onMenuHamburgerClick, onSearch, cardsList, buttonClass, onDelete } = props;
+    const { onSearch, cardsList, buttonClass, onDelete, children } = props;
     const [ visibleCardsList, setVisibleCardsList] = useState([]); // Выделяет карточки конкретного пользователя
     const currentUser = React.useContext(CurrentUserContext);
 
@@ -27,7 +26,7 @@ function SavedMovies(props) {
 
     return (
         <div className='grayWrapper'>
-            <Header onMenuHamburgerClick={onMenuHamburgerClick}/>
+            {children}
             <main className='movies'>
                 <SearchForm onClick={onSearch}/>
                 <div className="moviesCards">{

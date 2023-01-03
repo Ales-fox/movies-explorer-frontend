@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import Header from "../Header/Header";
 import './Profile.css';
 
 function Profile(props) {
-    const { onMenuHamburgerClick, logOutLink, linkName, onClick } = props;
+    const { logOutLink, linkName, onClick, children } = props;
     const currentUser = React.useContext(CurrentUserContext); // Подписываемся на контекст
     const [value, setValue] = useState({ email: currentUser.email, name: currentUser.name }); //Создаем переменную для инпутов
 
@@ -24,7 +23,7 @@ function Profile(props) {
     };
     return (
         <>
-            <Header onMenuHamburgerClick={onMenuHamburgerClick}/>
+            {children}
             <main className='profile'>
                 <h1 className="profile__header">{`Привет, ${currentUser.name}!`}</h1>
                 <form className="profileForm"  onSubmit={handleSubmit}>

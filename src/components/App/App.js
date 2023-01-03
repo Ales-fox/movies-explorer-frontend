@@ -19,6 +19,7 @@ import * as authApi from '../../utils/authApi';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 import './App.css';
+import Header from '../Header/Header';
 
 
 function App() {
@@ -36,24 +37,30 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem('movies')) {
-      setMoviesCards(JSON.parse(localStorage.getItem('movies')));
-      setSearchValue(localStorage.getItem('search'));
-      setIsChecked(localStorage.getItem('checked'));
+    if (loggedIn) {
+      if (localStorage.getItem('movies')) {
+        setMoviesCards(JSON.parse(localStorage.getItem('movies')));
+        setSearchValue(localStorage.getItem('search'));
+        setIsChecked(localStorage.getItem('checked'));
+      }
+  
+      Promise.all([mainApi.getlikedMovies(), mainApi.getUserInfo()])
+          .then(([likedMovies, userInfo]) => {
+            setSavedMoviesCards(likedMovies);
+            setCurrentUser(userInfo);
+          })
+          .catch((err) => console.log(err));
     }
 
-    mainApi.getlikedMovies()
-      .then((data) => setSavedMoviesCards(data))
-      .catch((err) => console.log(err));
   }, [loggedIn]);
 
   useEffect(() => {
    }, [moviesCards]);
 
   // Регистрация
-  const handleRegister = (name, email, password) => {    
-    console.log('клик');
+  const handleRegister = (name, email, password) => {
     setIsLoading(true);
+
     return authApi.register(name, email, password)
       .then((data) => {
         if (!data) { return Promise.reject('No data') };
@@ -69,8 +76,8 @@ function App() {
   }
   //Авторизация
   const handleLogin = (email, password) => {
-    console.log('клик');
     setIsLoading(true);
+
     return authApi.authorize(email, password)
       .then((data) => {
         if (!data?.token) { return Promise.reject('No data') };
@@ -142,7 +149,6 @@ function App() {
         );
 
         setMoviesCards(itemsFilm);
-        console.log(itemsFilm);
 
         localStorage.setItem('isFilmShort', checked);
         localStorage.setItem('search', search);
@@ -162,9 +168,6 @@ function App() {
     // Снова проверяем, есть ли уже лайк на этой карточке    
     // const isLiked = savedMoviesCards.some(i => i.owner === currentUser._id);
     const isLiked = savedMoviesCards.some(i => i.id === card.id && i.owner === currentUser._id);
-    console.log(card);
-    console.log(currentUser);
-    console.log(currentUser._id);
 
     setIsLoading(true);
     if (!isLiked) {
@@ -213,7 +216,10 @@ function App() {
            
       <Routes>            
         <Route path='/'>
-          <Route index element={<Main loggedIn={loggedIn}/>} />
+          <Route index element={
+            <Main>
+              <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
+            </Main>} />
 
           <Route path='/signup' element={<Register onRegister={handleRegister} errorServerMessage={errorServerMessage} navigate={navigate}/>}>
           </Route>
@@ -224,14 +230,21 @@ function App() {
           <Route element={<ProtectedRoute loggedIn={loggedIn}/>}>
         
             
-            <Route path='/profile' element={<Profile onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn} logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} onEditProfileClick={handleEditProfile} />}/>
+            <Route path='/profile' element={
+              <Profile logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} onEditProfileClick={handleEditProfile}>
+                <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
+              </Profile>}/>
 
             <Route path='/movies' element={
-                <Movies onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn} onSearch={handleSearchClick} searchPlaceholder={searchValue} isChecked={isChecked} cardsList={moviesCards} buttonClass={`button-like`} onCardLike={handleCardLike} savedMoviesCards={savedMoviesCards} errorFilm={errorFilm}/>}>             
+              <Movies onSearch={handleSearchClick} searchPlaceholder={searchValue} isChecked={isChecked} cardsList={moviesCards} buttonClass={`button-like`} onCardLike={handleCardLike} savedMoviesCards={savedMoviesCards} errorFilm={errorFilm}>
+                <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
+              </Movies>}>             
             </Route>
 
             <Route path='/saved-movies' element={
-              <SavedMovies onMenuHamburgerClick={handleHamburgerPopupClick} onSearch={handleSearchClick} cardsList={savedMoviesCards} buttonClass={'button-delete'} onDelete={handleCardDelete}/>}>
+              <SavedMovies onSearch={handleSearchClick} cardsList={savedMoviesCards} buttonClass={'button-delete'} onDelete={handleCardDelete}>
+                <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
+              </SavedMovies>}>
             </Route>
            
           </Route>          
