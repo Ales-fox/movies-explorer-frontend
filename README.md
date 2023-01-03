@@ -3,5 +3,5 @@
 интерфейс на Реакте
 
 Ссылка на figma: https://disk.yandex.ru/d/gxy8lgVwurz8nA
-Домен фронтенда: movies.nomoredomains.club
+Ссылка на пулреквест:
 Домен бэкенда: api.movies.nomoredomains.club

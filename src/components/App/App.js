@@ -51,7 +51,8 @@ function App() {
    }, [moviesCards]);
 
   // Регистрация
-  const handleRegister = (name, email, password) => {
+  const handleRegister = (name, email, password) => {    
+    console.log('клик');
     setIsLoading(true);
     return authApi.register(name, email, password)
       .then((data) => {
@@ -68,6 +69,7 @@ function App() {
   }
   //Авторизация
   const handleLogin = (email, password) => {
+    console.log('клик');
     setIsLoading(true);
     return authApi.authorize(email, password)
       .then((data) => {
