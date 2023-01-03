@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
+import {inputErrorMessage} from '../../constants';
 import './SearchForm.css';
 
 function SearchForm(props) {
@@ -17,7 +18,6 @@ function SearchForm(props) {
 
     // Управление инпутами
     function handleChangeValue(e) {
-        // ValidationSearch(e, setError, setErrorMessage);
         setFormSettings(old => ({
             ...old,
             search: e.target.value
@@ -37,8 +37,7 @@ function SearchForm(props) {
         e.preventDefault();
 
         if (formSettings.search === '') {
-            setPlaceholder('Нужно ввести ключевое слово');
-            console.log(placeholder);
+            setPlaceholder(inputErrorMessage.searchEmpty);
             return;
         }
 
