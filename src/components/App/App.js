@@ -36,6 +36,20 @@ function App() {
   const [errorFilm, setErrorFilm] = useState(''); // Для строки при случае когда фильмы не найдены/ошибка с сервера
   const navigate = useNavigate();
 
+  const fullPage = document.location.href; // Определяет адрес страницы
+  const shortPage = fullPage.substr(fullPage.lastIndexOf('/') + 1); // Отделяет адрес после последнего слеша
+  // Проверка токена пользователя при автоматической авторизации
+  useEffect(() => {
+    mainApi.getUserInfo()
+      .then((res) => {
+        if (res) {          
+          setCurrentUser(res);
+          setLoggedIn(true);
+          navigate(shortPage);
+        }
+      }).catch((err) => console.log(err));
+  }, []);
+
   useEffect(() => {
     if (loggedIn) {
       if (localStorage.getItem('movies')) {
@@ -92,29 +106,6 @@ function App() {
       });
   }
 
-  // Проверка токена пользователя при автоматической авторизации
-  const tokenCheck = () => {
-    const fullPage = document.location.href;
-    const shortPage = fullPage.substr(fullPage.lastIndexOf('/') + 1);
-
-    mainApi.getUserInfo()
-      .then((res) => {
-        if (res) {
-          setCurrentUser(res);
-          console.log(res);
-          setLoggedIn(true);
-          navigate('/movies');
-          //navigate(shortPage); // Перенаправляет всегда на страницу указанную в protectedRoute, хмм
-        }
-      }).catch((err) => {
-        (err === '401')? handleLogOutClick() : console.log(err);
-      });
-  }
-
-  useEffect(() => {
-    tokenCheck();
-  }, []);
-
   //Выход из системы
   const handleLogOutClick = () => {
     setIsLoading(true);
@@ -139,7 +130,7 @@ function App() {
 
     moviesApi.getAllFilms()
       .then((itemsFilm) => {
-        console.log(itemsFilm);
+
         if (checked) {
           itemsFilm = itemsFilm.filter((film) => film.duration <= 40);
         }
@@ -165,8 +156,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    // Снова проверяем, есть ли уже лайк на этой карточке    
-    // const isLiked = savedMoviesCards.some(i => i.owner === currentUser._id);
+    // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = savedMoviesCards.some(i => i.id === card.id && i.owner === currentUser._id);
 
     setIsLoading(true);
@@ -192,6 +182,10 @@ function App() {
   }
 
   function handleEditProfile(name, email) {
+    if (name === currentUser.name & email === currentUser.email) {
+      return;
+    }      
+        
     mainApi.correctUserInfo(name, email)
       .then((data) => {
         setCurrentUser({
@@ -215,42 +209,40 @@ function App() {
     <div className="App">
            
       <Routes>            
-        <Route path='/'>
-          <Route index element={
-            <Main>
-              <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
-            </Main>} />
+        <Route path='/' element={
+          <Main>
+            <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
+          </Main>}>
+        </Route>
 
-          <Route path='/signup' element={<Register onRegister={handleRegister} errorServerMessage={errorServerMessage} navigate={navigate}/>}>
+        <Route element={<ProtectedRoute loggedIn={loggedIn}/>}>        
+            
+          <Route path='/profile' element={
+            <Profile logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} onEditProfileClick={handleEditProfile}>
+              <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
+            </Profile>}/>
+
+          <Route path='/movies' element={
+            <Movies onSearch={handleSearchClick} searchPlaceholder={searchValue} isChecked={isChecked} cardsList={moviesCards} buttonClass={`button-like`} onCardLike={handleCardLike} savedMoviesCards={savedMoviesCards} errorFilm={errorFilm}>
+              <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
+            </Movies>}>             
           </Route>
 
-          <Route path='/signin' element={<Login onLogin={handleLogin} errorServerMessage={errorServerMessage} navigate={navigate}/>}>
-          </Route>          
-
-          <Route element={<ProtectedRoute loggedIn={loggedIn}/>}>
-        
-            
-            <Route path='/profile' element={
-              <Profile logOutLink='/signin' linkName='Выйти из аккаунта' onClick={handleLogOutClick} onEditProfileClick={handleEditProfile}>
-                <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
-              </Profile>}/>
-
-            <Route path='/movies' element={
-              <Movies onSearch={handleSearchClick} searchPlaceholder={searchValue} isChecked={isChecked} cardsList={moviesCards} buttonClass={`button-like`} onCardLike={handleCardLike} savedMoviesCards={savedMoviesCards} errorFilm={errorFilm}>
-                <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
-              </Movies>}>             
-            </Route>
-
-            <Route path='/saved-movies' element={
-              <SavedMovies onSearch={handleSearchClick} cardsList={savedMoviesCards} buttonClass={'button-delete'} onDelete={handleCardDelete}>
-                <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
-              </SavedMovies>}>
-            </Route>
+          <Route path='/saved-movies' element={
+            <SavedMovies onSearch={handleSearchClick} cardsList={savedMoviesCards} buttonClass={'button-delete'} onDelete={handleCardDelete}>
+              <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
+            </SavedMovies>}>
+          </Route>
            
-          </Route>          
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>                 
+        </Route> 
+
+        <Route path='/signup' element={<Register onRegister={handleRegister} errorServerMessage={errorServerMessage} navigate={navigate}/>}/>          
+
+        <Route path='/signin' element={<Login onLogin={handleLogin} errorServerMessage={errorServerMessage} navigate={navigate}/>}/>         
+                   
+        <Route path="/*" element={<NotFoundPage />}/>                
       </Routes>
+
       <Preloader isLoading={isLoading}/>
       <HeaderMenuHamburger isOpen={isPopupOpen} onClose={closePopups}/>
       

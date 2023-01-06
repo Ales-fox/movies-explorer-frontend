@@ -7,7 +7,7 @@ function MoviesCardList(props) {
 
     const [ index, setIndex ] = useState(0); // Показывает кол-во нажатий на кнопку Ещё
     const [ visibleCardsList, setVisibleCardsList] = useState([]); // Показывает кол-во видимых карточек сейчас
-    const [ moreActive, setMoreActive ] = useState(true);
+    const [ moreActive, setMoreActive ] = useState(false);
     const [ content, setContent ] = useState({films: true, error: false });
     let page_size; // Показывает кол-во карточек добавляющихся за раз
     const screenWidth = window.screen.width; // Ширина экрана
@@ -18,9 +18,16 @@ function MoviesCardList(props) {
     } else {
         page_size = 5;
     }
-    
+    // Наличие кнопки more в зависимости от содержимого массива visibleCardsList
     useEffect(() => {
-        setMoreActive(true);
+        if (visibleCardsList.length === 0) {
+            setMoreActive(false);
+        } else {
+            setMoreActive(true);
+        } 
+    }, [visibleCardsList])
+
+    useEffect(() => {
         const numberOfItems = page_size * ( index + 1 );
 
         const newArray = [];
@@ -33,19 +40,18 @@ function MoviesCardList(props) {
                 setMoreActive(false);
                 break;
             }                        
-        }    
-            
-        setVisibleCardsList(newArray);
+        } 
+        setVisibleCardsList(newArray);  
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    } , [index, cardsList]) // Реагирует на смену кол-ва нажатий на кнопку ещё
+    } , [index, cardsList]) // Реагирует на смену кол-ва нажатий на кнопку ещё и массива cardsList
 
     useEffect(() => {
         if (errorFilm === '') {
             setContent({films: true, error: false })
-            setMoreActive(true);
+            //setMoreActive(true);
         } else {
             setContent({films: false, error: true })
-            setMoreActive(false);
+            //setMoreActive(false);
         }
     }, [errorFilm])
     

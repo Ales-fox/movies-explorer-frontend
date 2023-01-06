@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { moviesImgURL } from "../../constants";
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import './MoviesCard.css';
@@ -7,12 +7,15 @@ function MoviesCard(props) {
     const { card, buttonClass,  savedMoviesCards, onClick } = props;
     
     const currentUser = React.useContext(CurrentUserContext); // Подписываемся на контекст
-
     const hour = Math.floor(card.duration/60);
     const min = card.duration%60;
     
     // Определяем, есть ли у карточки наш лайк
     const isLiked = savedMoviesCards.some(i => i.id === card.id && i.owner === currentUser._id);
+    useEffect(() => {
+        
+    }, [isLiked])
+    
     // Создаём переменную, в которой определяется кнопка лайка или удаления
     let classOfButton;
     if (buttonClass === 'button-like') {

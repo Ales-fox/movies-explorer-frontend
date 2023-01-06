@@ -60,8 +60,7 @@ function SearchForm(props) {
                     className='searchForm__input' 
                     name="search" 
                     onChange={handleChangeValue} 
-                    value={formSettings.search} 
-                    placeholder={placeholder} 
+                    value={formSettings.search}
                     required/>
                 <button type="submit" className={`button-search button `} >Поиск</button>
             </form>
