@@ -60,7 +60,6 @@ function App() {
   useEffect(() => {
     if (loggedIn) {
       if (localStorage.getItem('movies')) {
-        console.log(localStorage.getItem('isFilmShort'));
         setMoviesCards(JSON.parse(localStorage.getItem('movies')));
         setSearchValue(localStorage.getItem('search'));
         setIsChecked((localStorage.getItem('isFilmShort') === "true")? true : false);
@@ -161,6 +160,37 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
+  const handleSearchSavedCard = ({search, checked}) => {
+    setIsLoading(true);  
+    setErrorFilm('');
+
+    mainApi.getlikedMovies()
+      .then((itemsFilm) => {
+
+        if (checked) {
+          itemsFilm = itemsFilm.filter((film) => film.duration <= 40);
+        }
+
+        itemsFilm = itemsFilm.filter(({ nameEN, nameRU }) => 
+        filterSearch(nameRU, search) || filterSearch(nameEN, search)
+        );
+
+        setSavedMoviesCards(itemsFilm);
+
+        localStorage.setItem('isFilmShort', checked);
+        localStorage.setItem('search', search);
+        localStorage.setItem('movies', JSON.stringify(itemsFilm));
+
+        if (itemsFilm.length === 0) {
+          setErrorFilm('Ничего не найдено');
+        }
+
+      }).catch(err => {
+        setErrorFilm('Во время запроса произошла ошибка');
+      })
+      .finally(() => setIsLoading(false));
+  }
+
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = savedMoviesCards.some(i => i.id === card.id && i.owner === currentUser._id);
@@ -244,7 +274,7 @@ function App() {
           </Route>
 
           <Route path='/saved-movies' element={
-            <SavedMovies onSearch={handleSearchClick} cardsList={savedMoviesCards} buttonClass={'button-delete'} onDelete={handleCardDelete}>
+            <SavedMovies onSearch={handleSearchSavedCard} cardsList={savedMoviesCards} buttonClass={'button-delete'} onDelete={handleCardDelete} searchPlaceholder={searchValue} isChecked={isChecked}>
               <Header onMenuHamburgerClick={handleHamburgerPopupClick} loggedIn={loggedIn}/>
             </SavedMovies>}>
           </Route>

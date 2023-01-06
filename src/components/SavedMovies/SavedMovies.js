@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function SavedMovies(props) {
-    const { onSearch, cardsList, buttonClass, onDelete, children } = props;
+    const { onSearch, cardsList, buttonClass, onDelete, searchPlaceholder, isChecked, children } = props;
     const [ visibleCardsList, setVisibleCardsList] = useState([]); // Выделяет карточки конкретного пользователя
     const currentUser = React.useContext(CurrentUserContext);
 
@@ -27,7 +27,7 @@ function SavedMovies(props) {
         <div className='grayWrapper'>
             {children}
             <main className='movies'>
-                <SearchForm onClick={onSearch}/>
+                <SearchForm onSearch={onSearch} searchPlaceholder={searchPlaceholder} isChecked={isChecked}/>
                 <div className="moviesCards">{
                     visibleCardsList.map((card, index) => (
                         <MoviesCard key={index}

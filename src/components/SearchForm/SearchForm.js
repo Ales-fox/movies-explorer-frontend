@@ -22,7 +22,6 @@ function SearchForm(props) {
             ...old,
             search: e.target.value
         }));
-        console.log(formSettings);
     };
 
     function handleChangeCheckbox(e) {
@@ -40,7 +39,7 @@ function SearchForm(props) {
             setPlaceholder(inputErrorMessage.searchEmpty);
             return;
         }
-
+        console.log(formSettings);
         props.onSearch(formSettings);
         setPlaceholder(formSettings?.search || placeholder);
         setChecked(formSettings?.checked);
