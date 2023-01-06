@@ -10,7 +10,7 @@ export const inputErrorMessage = {
     nameIncorrrect: 'Имя должно содержать только латиницу, кириллицу, пробел или дефис'
 }
 
-export const baseURL = 'http://localhost:3000'
+export const baseURL = 'https://api.movies.nomoredomains.club'
 //' http://localhost:3000 https://api.movies.nomoredomains.club' ;
 export const moviesURL = 'https://api.nomoreparties.co/beatfilm-movies';
 export const moviesImgURL = 'https://api.nomoreparties.co';
