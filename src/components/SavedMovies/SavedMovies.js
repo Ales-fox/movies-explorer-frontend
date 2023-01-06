@@ -13,8 +13,7 @@ function SavedMovies(props) {
 
     useEffect(() => {
         const newArray = [];
-        console.log(cardsList);
-        console.log(currentUser._id);
+        
         for(let i= 0 ;i< cardsList.length ; i++ ){
             if(cardsList[i].owner === currentUser._id) 
                 newArray.push(cardsList[i]);                       

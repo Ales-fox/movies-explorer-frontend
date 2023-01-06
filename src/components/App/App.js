@@ -39,7 +39,10 @@ function App() {
   const fullPage = document.location.href; // Определяет адрес страницы
   const shortPage = fullPage.substr(fullPage.lastIndexOf('/') + 1); // Отделяет адрес после последнего слеша
   // Проверка токена пользователя при автоматической авторизации
+  const [isTokenChecked, setIsTokenChecked] = useState(false);
+
   useEffect(() => {
+    setIsLoading(true);
     mainApi.getUserInfo()
       .then((res) => {
         if (res) {          
@@ -47,15 +50,20 @@ function App() {
           setLoggedIn(true);
           navigate(shortPage);
         }
-      }).catch((err) => console.log(err));
-  }, []);
+      }).catch((err) => console.log(err))
+      .finally(() => {
+        setIsLoading(false);
+        setIsTokenChecked(true);
+      });
+  }, [navigate, shortPage]);
 
   useEffect(() => {
     if (loggedIn) {
       if (localStorage.getItem('movies')) {
+        console.log(localStorage.getItem('isFilmShort'));
         setMoviesCards(JSON.parse(localStorage.getItem('movies')));
         setSearchValue(localStorage.getItem('search'));
-        setIsChecked(localStorage.getItem('checked'));
+        setIsChecked((localStorage.getItem('isFilmShort') === "true")? true : false);
       }
   
       Promise.all([mainApi.getlikedMovies(), mainApi.getUserInfo()])
@@ -67,9 +75,6 @@ function App() {
     }
 
   }, [loggedIn]);
-
-  useEffect(() => {
-   }, [moviesCards]);
 
   // Регистрация
   const handleRegister = (name, email, password) => {
@@ -115,6 +120,7 @@ function App() {
       setLoggedIn(false);
       navigate('/signin');      
       console.log('Вышли');
+      setIsTokenChecked(false); // ? 
     })
     .catch((err) => console.dir(err))
     .finally(() => {
@@ -162,12 +168,17 @@ function App() {
     setIsLoading(true);
     if (!isLiked) {
       mainApi.putLikes(card)
-        .then((data) => console.log(data))
+        .then((dataCard) => {
+          setSavedMoviesCards((old) => ([...old, dataCard]));
+        })
         .catch((err) => console.error(err))
         .finally(() => setIsLoading(false));
     } else {
-      mainApi.deleteLikes(card)
-        .then((data) => console.log(data))
+      const savedCard = savedMoviesCards.find(c => c.id === card.id & c.owner === currentUser._id);
+      mainApi.deleteLikes(savedCard)
+        .then((dataCard) => {
+          setSavedMoviesCards(savedMoviesCards.filter(c => c._id !== dataCard._id));
+        })
         .catch((err) => console.error(err))
         .finally(() => setIsLoading(false));
     }
@@ -176,7 +187,9 @@ function App() {
   function handleCardDelete(card) {
     setIsLoading(true);
     mainApi.deleteLikes(card)
-      .then((data) => console.log(data))
+      .then((dataCard) => {
+        setSavedMoviesCards(savedMoviesCards.filter(c => c._id !== dataCard._id));
+      })
       .catch((err) => console.error(err))
       .finally(() => setIsLoading(false));
   }
@@ -203,6 +216,8 @@ function App() {
   const closePopups = () => {
     setPopupOpen(false);
   }
+  
+  if (!isTokenChecked) { return ( <Preloader isLoading={isLoading}/> ) }
 
   return (
     <CurrentUserContext.Provider value={currentUser}> 
@@ -234,13 +249,13 @@ function App() {
             </SavedMovies>}>
           </Route>
            
-        </Route> 
+        </Route>
 
         <Route path='/signup' element={<Register onRegister={handleRegister} errorServerMessage={errorServerMessage} navigate={navigate}/>}/>          
 
         <Route path='/signin' element={<Login onLogin={handleLogin} errorServerMessage={errorServerMessage} navigate={navigate}/>}/>         
                    
-        <Route path="/*" element={<NotFoundPage />}/>                
+        <Route path="*" element={<NotFoundPage />}/>                
       </Routes>
 
       <Preloader isLoading={isLoading}/>
