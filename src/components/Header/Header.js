@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import icon from '../../images/iconAccount.svg';
@@ -5,14 +6,20 @@ import './Header.css'
 
 function Header(props) {
     const { onMenuHamburgerClick, loggedIn } = props;
-    
+    const [auth, setAuth] = useState(false);
+
+    useEffect(() => {
+        console.log(loggedIn);
+        (loggedIn)? setAuth(true) : setAuth(false);
+    }, [loggedIn]);
+
     return (
         <header className='header '>
             
             <Link className='link header__logo' to='/'>
                 <img className='logo' src={logo} alt='Лого'/>
             </Link>          
-            {(loggedIn)? 
+            {(auth)? 
                 <>
                     <div className='header__links'>
                         <NavLink className={({isActive}) => "header__link link " + (isActive? 'header__link_active': '')} to='/movies'>Фильмы</NavLink>

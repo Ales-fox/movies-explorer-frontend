@@ -14,6 +14,10 @@ function SearchForm(props) {
     useEffect(() => {
         setPlaceholder(searchPlaceholder);
         setChecked(localStorage.getItem('isFilmShort') === 'true');
+        setFormSettings((old) => ({
+            ...old,
+            search: localStorage.getItem('search')? localStorage.getItem('search') : ''
+        }))
     }, [searchPlaceholder])
 
     // Управление инпутами
@@ -39,11 +43,10 @@ function SearchForm(props) {
             setPlaceholder(inputErrorMessage.searchEmpty);
             return;
         }
-        console.log(formSettings);
         props.onSearch(formSettings);
         setPlaceholder(formSettings?.search || placeholder);
         setChecked(formSettings?.checked);
-        setFormSettings({ search: "", checked: false });
+        // setFormSettings({ search: "", checked: false });
         clearForm(e);
     };
 

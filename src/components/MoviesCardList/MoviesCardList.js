@@ -22,10 +22,12 @@ function MoviesCardList(props) {
     useEffect(() => {
         if (visibleCardsList.length === 0) {
             setMoreActive(false);
+        } else if (visibleCardsList.length === cardsList.length ) {
+            setMoreActive(false);
         } else {
             setMoreActive(true);
         } 
-    }, [visibleCardsList])
+    }, [visibleCardsList, cardsList])
 
     useEffect(() => {
         const numberOfItems = page_size * ( index + 1 );
@@ -34,12 +36,7 @@ function MoviesCardList(props) {
 
         for(let i= 0 ;i< cardsList.length ; i++ ){
             if(i < numberOfItems) 
-                newArray.push(cardsList[i]);
-
-            if (newArray.length === cardsList.length) {
-                setMoreActive(false);
-                break;
-            }                        
+                newArray.push(cardsList[i]);        
         } 
         setVisibleCardsList(newArray);  
     // eslint-disable-next-line react-hooks/exhaustive-deps

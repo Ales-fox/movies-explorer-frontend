@@ -50,6 +50,18 @@
   text-align: right;
 }
 
+.serverMessage{
+  margin-top: -20px;
+  height: 20px;
+  /* color: #FF004C; */
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+}
+
 .button__profile{
   background: none;
   border: none;
@@ -61,6 +73,10 @@
   margin-bottom: 16px;
 }
 
+.button__profile_inactive{
+  opacity: 0.5;
+}
+
 .link-logOut{
   font-family: 'Inter', "Arial", serif;
   font-style: normal;
@@ -70,6 +86,7 @@
   color: #EE3465;
   margin: auto;
 }
+
 
 @media screen and (max-width: 768px) {
   .profile{

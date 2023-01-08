@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 //Импорт компонентов
@@ -17,6 +17,7 @@ import * as moviesApi from '../../utils/MoviesApi';
 import * as mainApi from '../../utils/MainApi';
 import * as authApi from '../../utils/authApi';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { initialUser, initialMoviesCards } from '../../constants';
 
 import './App.css';
 import Header from '../Header/Header';
@@ -24,8 +25,8 @@ import Header from '../Header/Header';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false); // Потом изменить на false
-  const [currentUser, setCurrentUser] = useState({name: '', email: '', _id: ''});
-  const [moviesCards, setMoviesCards] = useState([]);
+  const [currentUser, setCurrentUser] = useState(initialUser);
+  const [moviesCards, setMoviesCards] = useState(initialMoviesCards);
 
   const [savedMoviesCards, setSavedMoviesCards] = useState([]);
   const [isPopupOpen, setPopupOpen] = useState(false);
@@ -70,7 +71,11 @@ function App() {
             setSavedMoviesCards(likedMovies);
             setCurrentUser(userInfo);
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            if (err === 'Ошибка: 401  Unauthorized') {
+              navigate('/signin');
+            }
+          });
     }
 
   }, [loggedIn]);
@@ -100,6 +105,7 @@ function App() {
       .then((data) => {
         if (!data?.token) { return Promise.reject('No data') };
         setLoggedIn(true);
+        //setLoggedIn((prevState) => !prevState);
         navigate('/movies');
       })
       .catch((err) => {        
@@ -110,16 +116,35 @@ function App() {
       });
   }
 
+  const logOut = () => {
+    localStorage.clear();
+    //setLoggedIn(false);
+    console.log(loggedIn);
+    setCurrentUser(initialUser);
+    setMoviesCards(initialMoviesCards);           
+    console.log('Вышли');
+    navigate('/signin'); 
+    setIsTokenChecked(false);
+    setLoggedIn(false);
+  }
+
   //Выход из системы
-  const handleLogOutClick = () => {
+  const handleLogOutClick =() => {
     setIsLoading(true);
     authApi.logOut()
     .then(() => {
-      localStorage.clear();
-      setLoggedIn(false);
-      navigate('/signin');      
+      logOut();
+      /*localStorage.clear();
+      //setLoggedIn(false);
+      setLoggedIn(function(prev) {
+        return !prev
+      });
+      console.log(loggedIn);
+      setCurrentUser(initialUser);
+      setMoviesCards(initialMoviesCards);           
       console.log('Вышли');
-      setIsTokenChecked(false); // ? 
+      navigate('/signin'); 
+      setIsTokenChecked(false);*/
     })
     .catch((err) => console.dir(err))
     .finally(() => {
@@ -166,7 +191,6 @@ function App() {
 
     mainApi.getlikedMovies()
       .then((itemsFilm) => {
-
         if (checked) {
           itemsFilm = itemsFilm.filter((film) => film.duration <= 40);
         }
@@ -176,10 +200,6 @@ function App() {
         );
 
         setSavedMoviesCards(itemsFilm);
-
-        localStorage.setItem('isFilmShort', checked);
-        localStorage.setItem('search', search);
-        localStorage.setItem('movies', JSON.stringify(itemsFilm));
 
         if (itemsFilm.length === 0) {
           setErrorFilm('Ничего не найдено');
@@ -224,19 +244,27 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  function handleEditProfile(name, email) {
+  function handleEditProfile(name, email, setServerMessage) {
     if (name === currentUser.name & email === currentUser.email) {
       return;
-    }      
+    };
         
     mainApi.correctUserInfo(name, email)
       .then((data) => {
         setCurrentUser({
           name: data.name,
           email: data.email
-        })
+        });
+        setServerMessage((old) => ({
+          ...old,
+          mes: 'Профиль успешно сохранен'
+        }));
       })
-      .catch((err) => console.log(err));
+      .catch(() => setServerMessage((old) => ({
+        ...old,
+        mes: 'При обновлении профиля произошла ошибка'
+      }))
+      );
   }
 
   const handleHamburgerPopupClick = () => {
