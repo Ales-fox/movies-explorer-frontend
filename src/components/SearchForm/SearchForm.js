@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-
+import { useLocation  } from 'react-router-dom';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import {inputErrorMessage} from '../../constants';
 import './SearchForm.css';
 
 function SearchForm(props) {
-    const {searchPlaceholder, isChecked} = props;
+    const {searchPlaceholder, isChecked, setVisibleCardsList} = props;
     
-    const [formSettings, setFormSettings] = useState({search: '', checked: false});// Переменная для инпута search и checkbox
+    const [formSettings, setFormSettings] = useState({search: '', searchSaved: '', checked: false, checkedSaved: false});// Переменная для инпута search и checkbox
     const [placeholder, setPlaceholder] = useState(searchPlaceholder);
     const [checked, setChecked] = useState(isChecked);
+    
+    const {pathname} = useLocation();
 
     useEffect(() => {
         setPlaceholder(searchPlaceholder);
@@ -22,18 +24,32 @@ function SearchForm(props) {
 
     // Управление инпутами
     function handleChangeValue(e) {
-        setFormSettings(old => ({
-            ...old,
-            search: e.target.value
-        }));
+        if (pathname === '/movies') {
+            setFormSettings(old => ({
+                ...old,
+                search: e.target.value
+            }));
+        } else {
+            setFormSettings(old => ({
+                ...old,
+                searchSaved: e.target.value
+            }));
+        }
     };
 
     function handleChangeCheckbox(e) {
         setChecked(!checked);
-        setFormSettings(old => ({
-            ...old,
-            checked: e.target.checked
-        }));
+        if (pathname === '/movies') {
+            setFormSettings(old => ({
+                ...old,
+                checked: e.target.checked
+            }));
+        } else {
+            setFormSettings(old => ({
+                ...old,
+                checkedSaved: e.target.checked
+            }));
+        }
     }
     
     const handleSubmit = (e) => {
@@ -43,7 +59,7 @@ function SearchForm(props) {
             setPlaceholder(inputErrorMessage.searchEmpty);
             return;
         }
-        props.onSearch(formSettings);
+        props.onSearch(formSettings, setVisibleCardsList);
         setPlaceholder(formSettings?.search || placeholder);
         setChecked(formSettings?.checked);
         // setFormSettings({ search: "", checked: false });
@@ -62,7 +78,7 @@ function SearchForm(props) {
                     className='searchForm__input' 
                     name="search" 
                     onChange={handleChangeValue} 
-                    value={formSettings.search}
+                    value={pathname==='/movies'? formSettings.search : formSettings.searchSaved}
                     required/>
                 <button type="submit" className={`button-search button `} >Поиск</button>
             </form>

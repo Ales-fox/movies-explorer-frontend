@@ -22,12 +22,12 @@ function SavedMovies(props) {
         setVisibleCardsList(newArray);
 
     } , [cardsList])
-
+    
     return (
         <div className='grayWrapper'>
             {children}
             <main className='movies'>
-                <SearchForm onSearch={onSearch} searchPlaceholder={searchPlaceholder} isChecked={isChecked}/>
+                <SearchForm onSearch={onSearch} searchPlaceholder={searchPlaceholder} isChecked={isChecked} setVisibleCardsList={setVisibleCardsList}/>
                 <div className="moviesCards">{
                     visibleCardsList.map((card, index) => (
                         <MoviesCard key={index}

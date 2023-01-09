@@ -171,21 +171,22 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  const handleSearchSavedCard = ({search, checked}) => {
+  const handleSearchSavedCard = ({searchSaved, checkedSaved}, setVisibleCardsList) => {
     setIsLoading(true);  
     setErrorFilm('');
 
     mainApi.getlikedMovies()
       .then((itemsFilm) => {
-        if (checked) {
+        if (checkedSaved) {
           itemsFilm = itemsFilm.filter((film) => film.duration <= 40);
         }
 
         itemsFilm = itemsFilm.filter(({ nameEN, nameRU }) => 
-        filterSearch(nameRU, search) || filterSearch(nameEN, search)
+        filterSearch(nameRU, searchSaved) || filterSearch(nameEN, searchSaved)
         );
 
-        setSavedMoviesCards(itemsFilm);
+        //setSavedMoviesCards(itemsFilm);
+        setVisibleCardsList(itemsFilm);
 
         if (itemsFilm.length === 0) {
           setErrorFilm('Ничего не найдено');
