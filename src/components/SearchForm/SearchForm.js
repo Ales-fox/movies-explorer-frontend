@@ -62,7 +62,6 @@ function SearchForm(props) {
         props.onSearch(formSettings, setVisibleCardsList);
         setPlaceholder(formSettings?.search || placeholder);
         setChecked(formSettings?.checked);
-        // setFormSettings({ search: "", checked: false });
         clearForm(e);
     };
 

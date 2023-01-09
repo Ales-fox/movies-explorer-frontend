@@ -129,7 +129,7 @@ function App() {
       console.log(loggedIn);
       setCurrentUser(initialUser);
       setMoviesCards(initialMoviesCards);   
-      navigate('/signin'); 
+      navigate('/'); 
       setIsTokenChecked(false);
     })
     .catch((err) => console.dir(err))
