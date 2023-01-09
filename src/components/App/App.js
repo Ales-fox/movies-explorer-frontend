@@ -51,7 +51,9 @@ function App() {
           setLoggedIn(true);
           navigate(shortPage);
         }
-      }).catch((err) => console.log(err))
+      }).catch((err) => {
+        console.log(err);
+        setLoggedIn(false);})
       .finally(() => {
         setIsLoading(false);
         setIsTokenChecked(true);
@@ -74,6 +76,7 @@ function App() {
           .catch((err) => {
             if (err === 'Ошибка: 401  Unauthorized') {
               navigate('/signin');
+              setLoggedIn(false);
             }
           });
     }
@@ -116,35 +119,18 @@ function App() {
       });
   }
 
-  const logOut = () => {
-    localStorage.clear();
-    //setLoggedIn(false);
-    console.log(loggedIn);
-    setCurrentUser(initialUser);
-    setMoviesCards(initialMoviesCards);           
-    console.log('Вышли');
-    navigate('/signin'); 
-    setIsTokenChecked(false);
-    setLoggedIn(false);
-  }
-
   //Выход из системы
   const handleLogOutClick =() => {
     setIsLoading(true);
     authApi.logOut()
     .then(() => {
-      logOut();
-      /*localStorage.clear();
-      //setLoggedIn(false);
-      setLoggedIn(function(prev) {
-        return !prev
-      });
+      localStorage.clear();
+      setLoggedIn(false);
       console.log(loggedIn);
       setCurrentUser(initialUser);
-      setMoviesCards(initialMoviesCards);           
-      console.log('Вышли');
+      setMoviesCards(initialMoviesCards);   
       navigate('/signin'); 
-      setIsTokenChecked(false);*/
+      setIsTokenChecked(false);
     })
     .catch((err) => console.dir(err))
     .finally(() => {

@@ -6,12 +6,6 @@ import './Header.css'
 
 function Header(props) {
     const { onMenuHamburgerClick, loggedIn } = props;
-    const [auth, setAuth] = useState(false);
-
-    useEffect(() => {
-        console.log(loggedIn);
-        (loggedIn)? setAuth(true) : setAuth(false);
-    }, [loggedIn]);
 
     return (
         <header className='header '>
@@ -19,7 +13,7 @@ function Header(props) {
             <Link className='link header__logo' to='/'>
                 <img className='logo' src={logo} alt='Лого'/>
             </Link>          
-            {(auth)? 
+            {(loggedIn)? 
                 <>
                     <div className='header__links'>
                         <NavLink className={({isActive}) => "header__link link " + (isActive? 'header__link_active': '')} to='/movies'>Фильмы</NavLink>
