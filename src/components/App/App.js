@@ -184,9 +184,8 @@ function App() {
         itemsFilm = itemsFilm.filter(({ nameEN, nameRU }) => 
         filterSearch(nameRU, searchSaved) || filterSearch(nameEN, searchSaved)
         );
-
-        //setSavedMoviesCards(itemsFilm);
-        setVisibleCardsList(itemsFilm);
+        const visibleCard = itemsFilm.filter(i => i.owner === currentUser._id);
+        setVisibleCardsList(visibleCard);
 
         if (itemsFilm.length === 0) {
           setErrorFilm('Ничего не найдено');
