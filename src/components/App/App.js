@@ -128,7 +128,7 @@ function App() {
       setLoggedIn(false);
       console.log(loggedIn);
       setCurrentUser(initialUser);
-      setMoviesCards(initialMoviesCards);   
+      setMoviesCards(initialMoviesCards);
       navigate('/'); 
       setIsTokenChecked(false);
     })

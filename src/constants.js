@@ -11,7 +11,7 @@ export const inputErrorMessage = {
 }
 export const initialUser = {name: '', email: '', _id: ''};
 export const initialMoviesCards = [];
-export const baseURL = 'http://localhost:3000'
+export const baseURL = 'https://api.movies.nomoredomains.club'
 //' http://localhost:3000 https://api.movies.nomoredomains.club' ;
 export const moviesURL = 'https://api.nomoreparties.co/beatfilm-movies';
 export const moviesImgURL = 'https://api.nomoreparties.co';

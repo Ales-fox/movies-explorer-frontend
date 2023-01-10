@@ -66,7 +66,7 @@ function MoviesCardList(props) {
                         />
                     ))) :
                     (<span className='moviesCards__error'>{errorFilm}</span>)
-                }
+                }                
             </div>
             {(moreActive)? <button type='button' className='button-more' onClick={ () => setIndex( index + 1)}>Ещё</button> : ''}     
         </>
