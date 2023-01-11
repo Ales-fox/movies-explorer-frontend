@@ -3,10 +3,12 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
 function MoviesCardList(props) {    
-    const {  onCardLike, cardsList } = props;    
+    const {  onClick, cardsList, buttonClass, savedMoviesCards, errorFilm} = props;
+
     const [ index, setIndex ] = useState(0); // Показывает кол-во нажатий на кнопку Ещё
     const [ visibleCardsList, setVisibleCardsList] = useState([]); // Показывает кол-во видимых карточек сейчас
-    
+    const [ moreActive, setMoreActive ] = useState(false);
+    const [ content, setContent ] = useState({films: true, error: false });
     let page_size; // Показывает кол-во карточек добавляющихся за раз
     const screenWidth = window.screen.width; // Ширина экрана
     if (screenWidth <= 3000 &  screenWidth > 768 ) {
@@ -16,30 +18,57 @@ function MoviesCardList(props) {
     } else {
         page_size = 5;
     }
+    // Наличие кнопки more в зависимости от содержимого массива visibleCardsList
+    useEffect(() => {
+        if (visibleCardsList.length === 0) {
+            setMoreActive(false);
+        } else if (visibleCardsList.length === cardsList.length ) {
+            setMoreActive(false);
+        } else {
+            setMoreActive(true);
+        } 
+    }, [visibleCardsList, cardsList])
 
     useEffect(() => {
-        const numberOfItems = page_size * ( index +1 ); 
-    
-        const newArray = []; 
-    
+        const numberOfItems = page_size * ( index + 1 );
+
+        const newArray = [];
+
         for(let i= 0 ;i< cardsList.length ; i++ ){
-          if(i < numberOfItems) 
-              newArray.push(cardsList[i])
-        }
-    
-        setVisibleCardsList(newArray);
+            if(i < numberOfItems) 
+                newArray.push(cardsList[i]);        
+        } 
+        setVisibleCardsList(newArray);  
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    } , [index]) // Реагирует на смену кол-ва нажатий на кнопку ещё
+    } , [index, cardsList]) // Реагирует на смену кол-ва нажатий на кнопку ещё и массива cardsList
+
+    useEffect(() => {
+        if (errorFilm === '') {
+            setContent({films: true, error: false })
+            //setMoreActive(true);
+        } else {
+            setContent({films: false, error: true })
+            //setMoreActive(false);
+        }
+    }, [errorFilm])
+    
 
     return (        
         <>
-            <div className="moviesCards">{
-                visibleCardsList.map((card) => (<MoviesCard key={card._id}
-                    card={card}
-                    onCardLike={onCardLike}/>
-                ))}
+            <div className="moviesCards">
+                {(content.films === true)?
+                    (visibleCardsList.map((card) => (
+                        <MoviesCard key={card.id}
+                        card={card}
+                        onClick={onClick}
+                        buttonClass={buttonClass}
+                        savedMoviesCards={savedMoviesCards}
+                        />
+                    ))) :
+                    (<span className='moviesCards__error'>{errorFilm}</span>)
+                }                
             </div>
-            <button type='button' className='button-more' onClick={ () => setIndex( index + 1)}>Ещё</button>     
+            {(moreActive)? <button type='button' className='button-more' onClick={ () => setIndex( index + 1)}>Ещё</button> : ''}     
         </>
     )
 }

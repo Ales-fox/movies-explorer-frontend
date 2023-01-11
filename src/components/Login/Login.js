@@ -2,24 +2,12 @@ import React, { useState } from 'react';
 import  SignForm from "../SignForm/SignForm";
 
 function Login(props) {
-    const [value, setValue] = useState({ email: '', password: ''});
-    
-    function handleChangeValue(e) {
-        setValue(old => ({
-            ...old,
-            [e.target.name]: e.target.value
-        }));
-    };
+    const {errorServerMessage}= props;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e, value) => {
         e.preventDefault();
-
         const { email, password } = value;
-
-        /*props.onLogin(email, password)
-            .then(() => {
-                setValue(initValues);
-            })*/ //Нет такого свойства пока
+        props.onLogin(email, password);
     };
 
     return (
@@ -30,9 +18,7 @@ function Login(props) {
                 link='/signup'
                 linkText='Регистрация'
                 onSubmit={handleSubmit}
-                onChange={handleChangeValue}
-                value={value}
-                path='/signin'
+                errorServerMessage={errorServerMessage}
             />
     )
 }

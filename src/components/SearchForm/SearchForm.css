@@ -8,6 +8,7 @@
   margin-bottom: 26px;
   padding-right: 10px;
   box-sizing: border-box;
+  position: relative;
 }
   
 .searchForm__input{
@@ -47,6 +48,11 @@
 .button-search:hover{
   opacity: 0.6;
   cursor: pointer;
+}
+
+.button-search_inactive{  
+  color: #C2C2C2;
+  background-color: #F8F8F8;
 }
 /*ищу скролл*/
 @media screen and (max-width: 470px) {

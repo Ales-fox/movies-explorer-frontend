@@ -15,10 +15,15 @@
 }
 
 .header__link{
+  margin-right: 16px;
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
   line-height: 18px;
+}
+
+.header__link:last-of-type{
+  margin-right: 0px;
 }
 
 .header__link:hover{
@@ -26,9 +31,8 @@
   cursor: pointer;
 }
 
-.header__link_bold{
+.header__link_active{
   font-weight: 500;
-  margin-right: 16px;
 }
 
 .link-button{
@@ -55,6 +59,31 @@
   padding: 0;
 }
 
+.header-main{
+  display: flex;
+}
+
+.header-main__link{
+  margin: auto 30px auto 0;
+  align-content: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.header-main__link-button{
+  margin: auto;
+  color: white;
+  padding: 8px 20px; 
+  border-radius: 3px;
+  border-width: 0;
+  font-family: 'Inter', "Arial", serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px; 
+}
 @media screen and (max-width: 768px) {
   .header{
     padding: 15px 30px;
@@ -77,4 +106,16 @@
   .header{
     padding: 15px 16px 16px 14px;
   }
+  .header-main__link{
+    margin-right: 14px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+
+  .header-main__link-button{
+    padding: 5px 12px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+
 }
